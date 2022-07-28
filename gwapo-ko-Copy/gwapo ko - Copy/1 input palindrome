@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<string.h>
+
+main(){
+
+char str[100],str1[100][100],str2[100];
+int i,j,k,l,len,z,x,n,count,count1,m;
+
+for(i=0;i<50;i++){
+str[i]='\0';
+str2[i]='\0';
+      for(j=0;j<20;j++){
+str1[i][j]='\0';
+      }
+}
+
+printf("Enter string:");
+gets(str);
+len=strlen(str);
+x=0;
+z=0;
+for(j=0;j<len;j++){
+if(str[j]==' '){
+x++;
+z=0;
+}
+else{
+str1[x][z]=str[j];
+z++;
+}
+}
+printf("Output:");
+for(k=0;k<=x;k++){
+len=strlen(str1[k]);
+l=0;
+count=0;
+count1=0;
+
+for(m=len-1;m>=0;m--){
+if(str1[k][l]==str1[k][m]){
+count++;
+}
+l++;
+}
+if(count==len){
+puts(str1[k]);
+count1++;
+}
+}
+if(count1==0){
+if(i!=0){
+printf("none\n");
+}
+}
+}
+			

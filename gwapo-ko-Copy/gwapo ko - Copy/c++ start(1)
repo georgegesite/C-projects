@@ -1,0 +1,28 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+
+   
+
+int main (int argc, char * argv[])
+
+{
+
+char str[100],i,j,k,l,m;
+int x,y,z;
+gets(str);
+x=strlen(str);
+cout<<"strlen:"<<x;
+x=strlen(str)-1;
+i=str[x];
+cout<<"\nlast:"<<i;
+
+ 
+
+system("PAUSE");
+return EXIT_SUCCESS;
+
+}

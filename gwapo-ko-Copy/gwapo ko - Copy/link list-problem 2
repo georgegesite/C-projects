@@ -1,0 +1,434 @@
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+#define strlens 50
+
+using namespace std;
+
+struct node{
+	std::string info;
+	struct node *next;
+}
+
+ *start;
+
+class single_llist{
+		
+	public:
+std::string *str;
+std::string *str1;
+		single_llist(){
+			str=new std::string[strlens];
+            str1=new std::string[50];
+			start=NULL;
+		}
+		
+		node *create_node(std::string);
+		void insert_begin();
+		void insert_last();
+		void insert_pos();
+		void delete_pos();
+		void update();
+        void search();
+		void display_maxWord();
+        void check();
+		void display();
+        void lines();
+int i;
+};
+
+int main(){
+	int choice;
+	single_llist a;
+	start=NULL;
+	while(1){
+		a.lines();
+		cout<<"[1]:Insert node at the beginning\n";
+		cout<<"[2]:Insert node at last\n";
+		cout<<"[3]:Insert at a given position\n";
+		cout<<"[4]:Update a node\n";
+		cout<<"[5]:Delete node\n";
+        cout<<"[6]:Search"<<endl;
+        cout<<"[7]:Display List"<<endl;
+		cout<<"[8]:Exit\n";
+		a.lines();
+		cout<<"Enter choice: ";
+		cin>>choice;
+        a.lines();
+		
+		switch(choice){
+			case 1:
+				a.insert_begin();
+				
+				break;
+				
+			case 2:
+				a.insert_last();
+				
+				break;
+				
+			case 3:
+				a.insert_pos();
+				
+				break;
+			
+			case 4:
+				a.update();
+				
+				break;
+			
+			case 5:
+				a.delete_pos();
+				
+				break;
+case 6:
+a.search();
+break;
+case 7:
+a.display();
+break;
+			
+			case 8:
+				cout<<"sayonara"<<endl;
+                a.lines();
+				exit(0);
+				break;
+				
+			default:
+				cout<<"Choice not valid"<<endl;
+				break;
+		}
+	}
+}
+
+
+node *single_llist::create_node(std::string value){
+	struct node *temp;
+	temp=new(struct node);
+	if(temp==NULL){
+		cout<<"\nMemory not allocated!";
+		return 0;
+	}
+	else{
+		temp->info=value;
+		temp->next=NULL;
+		return temp;
+	}
+}
+
+
+void single_llist::insert_begin(){
+	std::string value;
+	cout<<"Enter a word: ";
+	cin>>value;
+    lines();
+	struct node *temp,*p;
+	temp=create_node(value);
+	if(start==NULL){
+		start=temp;
+		start->next=NULL;
+	}
+	else{
+		p=start;
+		start=temp;
+		start->next=p;
+	}
+}
+
+
+void single_llist::insert_last(){
+	std::string value;
+	cout<<"Enter a word to be inserted: ";
+	cin>>value;
+    lines();
+
+	struct node *temp,*s;
+	temp=create_node(value);
+	s=start;
+	while(s->next!=NULL){
+		s=s->next;
+	}
+	temp->next=NULL;
+	s->next=temp;
+}
+
+
+void single_llist::insert_pos(){
+	std::string value;
+	int pos,c=0,i,flags=0;
+	cout<<"Enter the word to be inserted: ";
+	cin>>value;
+    lines();
+flags=0;
+	struct node *temp,*s,*ptr;
+	temp=create_node(value);
+	cout<<"Enter position: ";
+    
+	cin>>pos;
+lines();
+	
+	s=start;
+	while(s!=NULL){
+		s=s->next;
+		c++;
+	}
+	if(pos==1){
+		if(start==NULL){
+			start=temp;
+			start->next=NULL;
+
+		}
+		else{
+			ptr=start;
+			start=temp;
+			start->next=ptr;
+
+		}
+	}
+	else if(pos>1&&pos<=c){
+		s=start;
+		for(i=1;i<pos;i++){
+			ptr=s;
+			s=s->next;
+		}
+		ptr->next=temp;
+		temp->next=s;
+	}
+	else{
+		cout<<"Position out of range!!"<<endl;
+flags=1;
+        lines();
+	}
+if(flags==0){
+cout<<"Word inserted"<<endl;
+lines();
+}
+}
+
+void single_llist::search(){
+struct node *p;
+int con[100],vow[100],final[100],f,c,v,count[100],len,j,k,ctr,rem,counts[100],l,m,n,o;
+std::string s;
+
+c=0;
+v=0;
+f=0;
+rem=0;
+
+len=0;
+ctr=0;
+
+for(i=0;i<20;i++){
+con[i]=2;
+vow[i]=2;
+}
+
+if(start==NULL){
+cout<<"List is empty"<<endl;
+lines();
+}
+else{
+for(i=0;i<15;i++){
+final[i]=0;
+}
+p=start;
+while(p!=NULL){
+str[ctr]=p->info;
+ctr++;
+p=p->next;
+}
+f=0;
+for(i=0;i<ctr;i++){
+s=str[i];
+len=s.length();
+c=0;
+v=0;
+l=0;
+m=0;
+o=0;
+
+for(j=0;j<20;j++){
+con[j]=2;
+vow[j]=2;
+}
+for(k=0;k<len;k++){
+if(s[k]!='a'&&s[k]!='e'&&s[k]!='i'&&s[k]!='o'&&s[k]!='u'){
+con[c]=1;
+vow[v]=0;
+c++;
+v++;
+}
+else{
+vow[v]=1;
+con[c]=0;
+v++;
+c++;
+}
+}
+
+for(j=0;j<10;j++){
+if(con[j]!=2||vow[j]!=2){
+
+if(vow[j]==1&&con[j]==0){
+count[l]=1;
+counts[m]=0;
+l++;
+m++;
+}
+if(con[j]==1&&vow[j]==0){
+counts[m]=1;
+count[l]=0;
+l++;
+m++;
+}
+}
+}
+for(n=0;n<10;n++){
+if((counts[n]==1&&counts[n+1]==0)&&(count[n]==0&&count[n+1]==1)&&(counts[n+2]==1&&counts[n+3]==0)&&(count[n+2]==0&&count[n+3]==1)){
+o++;
+}
+
+}
+if(o>0){
+final[f]=i+1;
+f++;
+}
+
+
+
+}
+
+if(final[0]==0){
+cout<<"Not found"<<endl;
+lines();
+}
+else{
+cout<<"Word(s):"<<endl;
+for(i=0;i<f;i++){
+cout<<str[final[i]-1]<<"----------position:"<<final[i]<<endl;
+}
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+void single_llist::delete_pos(){
+	int pos,i,c=0,j=0;
+	if(start==NULL){
+		cout<<endl<<"List is empty!";
+        lines();
+		return;
+	}
+	cout<<"Enter the position of word to be deleted: ";
+	cin>>pos;
+lines();
+	struct node *s,*ptr;
+	s=start;
+	if(pos==1){
+		start=s->next;
+	}
+	else{
+		while(s!=NULL){
+			s=s->next;
+			c++;
+		}
+		if(pos>0&&pos<=c){
+			s=start;
+			for(i=1;i<pos;i++){
+				ptr=s;
+				s=s->next;
+			}
+			ptr->next=s->next;
+	
+		}
+		else{
+			cout<<"Position out of range!"<<endl;
+j=1;
+lines();
+		}
+		free(s);
+if(j==0){
+cout<<"Word deleted"<<endl;
+lines();
+}
+	}
+}
+
+
+void single_llist::display(){
+	struct node *temp;
+	if(start==NULL){
+		cout<<"List is empty!"<<endl;
+		return;
+lines();
+	}
+	temp=start;
+	cout<<"Element/s of the list is/are: \n";
+
+	while(temp!=NULL){
+		cout<<temp->info;
+		temp=temp->next;
+		if(temp!=NULL){
+			cout<<"->";
+		}
+	}
+   cout<<"->NULL";
+   cout<<endl;
+	lines();
+}
+
+
+void single_llist::update(){
+	int pos,i;
+	std::string value;
+	if(start==NULL){
+		cout<<"List is empty"<<endl;
+		return;
+lines();
+	}
+	cout<<"Enter the node position to be updated: ";
+	cin>>pos;
+lines();
+	cout<<"Enter the word to be inserted: ";
+	cin>>value;
+lines();
+	struct node *s,*ptr,*temp;
+	s=start;
+	if(pos==1){
+		start->info=value;
+	}
+	else{
+		for(i=0;i<pos-1;i++){
+			if(s==NULL){
+				cout<<"There are less than "<<pos<<" elements";
+				return;
+lines();
+			}
+			s=s->next;
+		}
+		s->info=value;
+	}
+	cout<<"Node updated"<<endl;
+}
+
+void single_llist::lines(){
+cout<<"------------------------------------------------------------"<<endl;
+}

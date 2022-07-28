@@ -1,0 +1,130 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstddef>
+typedef char * array;
+using namespace std;
+class stack{
+    public:
+            array str;
+            char word[100][100],siz[100],real[100][100];
+            int x,a,b,len[100],max,i,s,size,j,v;
+            void input();
+            void size_stack();
+            void push();
+            void pop();
+            void exit();
+            void lines();
+};
+int main(int argc,char * argv[])
+{
+   stack a;
+   char let[100];
+a.size_stack();
+for(;;){
+a.input();
+a.lines();
+cout<<"[A]:Push\n"<<"[B]:Pop\n"<<"[X]:Exit";
+a.lines();
+     gets(let);
+     a.lines();
+            if(let[0]=='A'||let[0]=='a'){
+               a.push();
+            }
+            if(let[0]=='B'||let[0]=='b'){
+              a.pop();
+            }
+            if(let[0]=='X'||let[0]=='x'){
+             a.exit();
+             break;
+            }
+            else{
+            cout<<"Try Again";
+            }
+}
+system("PAUSE");
+return EXIT_SUCCESS;
+}
+
+void stack::size_stack(){
+   lines();
+   cout<<"Input size of stack:";
+   gets(siz);
+   size=atoi(siz);
+   s=0;
+   v=0;
+}
+void stack::input(){
+  lines();
+  if(v==0){
+  str=new char[x];
+  cout<<"Input String:";
+  gets(str);
+  x=strlen(str);
+  a=0;
+  b=0;
+for(i=0;i<=x;i++){
+      if(str[i]!=' '&&str[i]!='\0'){
+           word[a][b]=str[i];
+           b++;
+      }
+      if(str[i]==' '||str[i]=='\0'){
+           len[a]=b;
+           b=0;
+           a++;
+      }
+}
+max=0;
+for(i=0;i<a;i++){
+       if(len[i]>len[max]){
+       max=i;
+       }
+}
+lines();
+cout<<word[max];
+v++;
+  }
+else{}
+
+}
+void stack::push(){
+  if(s==size){
+      cout<<"STACK IS FULL!";
+      cout<<"Stack:\n";
+      for(i=0;i<s;i++){
+         cout<<real[i]<<"\n";
+      }
+  }
+else{
+   strcpy(real[s],word[max]);
+   s++;
+   cout<<"Stack:\n";
+for(i=0;i<s;i++){
+    cout<<real[i]<<"\n";
+}
+delete[]str;
+for(i=0;i<a;i++){
+      for(j=0;j<len[i];j++){
+        word[i][j]='\0';
+      }
+}
+}
+v=0;
+}
+void stack::pop(){
+   if(s==0){
+      cout<<"STACK IS EMPTY";
+   }
+else{
+    s--;
+   cout<<"Stack: ";
+   for(i=0;i<s;i++){
+    cout<<real[i];
+   }
+}
+}
+void stack::exit(){
+cout<<"Exit";
+}
+void stack::lines(){
+cout<<endl<<"------------------------------------------"<<endl;
+}

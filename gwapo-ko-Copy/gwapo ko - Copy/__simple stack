@@ -1,0 +1,142 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+
+class stack{
+public:
+void size();
+void input();
+void push();
+void pop();
+void lines();
+void exit();
+
+
+char str[100],stack[100][100],anag[100][100],real[100][100],nw[100][100],siz[100];
+int i,j,k,l,m,n,o,q,r,size_stack,sum,temp,val[100],vv,count,z,x,wl,s,v=0,wl1;
+
+};
+
+   
+
+int main (int argc, char * argv[])
+
+{
+
+stack a;
+char let[100];
+a.size();
+a.lines();
+for(;;){
+a.input();
+cout<<"[A]:Push\n[B]:Pop\n[X]:Exit\n";
+gets(let);
+if(let[0]=='A'||let[0]=='a'){
+a.push();
+a.lines();
+}
+if(let[0]=='B'||let[0]=='b'){
+a.pop();
+a.lines();
+}
+if(let[0]=='X'||let[0]=='x'){
+a.exit();
+break;
+}
+else{
+cout<<"Try again"<<endl;
+a.lines();
+}
+}
+ 
+
+
+return EXIT_SUCCESS;
+
+}
+
+void stack::size(){
+
+cout<<"input size of stack:";
+gets(siz);
+size_stack=atoi(siz);
+cout<<endl;
+v=0;s=0;
+}
+
+void stack::input(){
+if(v==0){
+cout<<"input string: ";
+gets(str);
+cout<<endl;
+
+
+x=0;
+z=0;
+wl=strlen(str);
+
+for(i=0;i<wl;i++){
+if(str[i]!=' '&&str[i]!='\0'){
+nw[x][z]=str[i];
+z++;
+}
+else{
+nw[x][z]='\0';
+x++;
+z=0;
+}
+}
+
+cout<<nw[0]<<endl;
+
+}
+}
+
+void stack::push(){
+if(s==size_stack){
+v++;
+cout<<"stack is full"<<endl<<"stack:"<<endl;
+for(i=0;i<s;i++){
+cout<<real[i]<<" ";
+}
+}
+else{
+strcpy(real[s],nw[0]);
+s++;
+cout<<"stack:"<<endl;
+for(i=0;i<s;i++){
+cout<<real[i]<<" ";
+}
+}
+wl1=strlen(nw[0]);
+for(i=0;i<wl1;i++){
+nw[0][i]='\0';
+}
+v=0;
+}
+
+void stack::pop(){
+if(s==0){
+cout<<"stack is empty"<<endl;
+v=0;
+}
+
+else{
+s--;
+cout<<"stack:"<<endl;
+for(i=0;i<s;i++){
+cout<<real[i]<<endl;
+}
+}
+}
+
+void stack::lines(){
+cout<<endl<<"--------------------------------------------------"<<endl;
+}
+
+void stack::exit(){
+cout<<"program terminated";
+}
+

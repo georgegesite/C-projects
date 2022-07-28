@@ -1,0 +1,151 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+
+using namespace std;
+class quiz
+{
+    public:
+        void input();
+        void process();
+        void output();
+   int i,j,x,z,count,a,h,b,num,letter,sum,c,wl,mult,temp,final[100],exp,wll;
+ char str[100],s1[100][100],s2[100][100],s3[100][100];
+};
+
+int main(int argc, char * argv[])
+{
+quiz a;
+a.input();
+a.process();
+a.output();
+ 
+
+
+return EXIT_SUCCESS;
+
+}
+
+void quiz::input(){
+   cout<<"enter string:\n";
+gets(str);
+}
+void quiz::process(){
+   z=0;x=0;
+for(i=0;i<=strlen(str);i++){
+   if(str[i]!=' '&&str[i]!='\0'){
+     s1[x][z]=str[i];
+     z++;
+   }
+else{
+   s1[x][z]='\0';
+   x++;z=0;
+}
+}
+a=0;
+for(i=0;i<x;i++){
+count=0;
+   for(j=0;j<strlen(s1[i]);j++){
+     if(s1[i][j]=='.'){
+        count++;
+     }
+   }
+if(count==0){
+   strcpy(s2[a],s1[i]);
+   a++;}
+}
+
+b=0;
+for(i=0;i<a;i++){
+h=0;
+num=0;
+letter=0;
+   for(j=0;j<strlen(s2[i]);j++){
+     if(s2[i][j]=='h'){
+       h++;
+     }
+     if(s2[i][j]=='1'||s2[i][j]=='2'||s2[i][j]=='3'||s2[i][j]=='4'||s2[i][j]=='5'||s2[i][j]=='6'||s2[i][j]=='7'||s2[i][j]=='8'||s2[i][j]=='9'||s2[i][j]=='0'){
+   num++;
+     }
+if(s2[i][j]=='A'||s2[i][j]=='B'||s2[i][j]=='C'||s2[i][j]=='D'||s2[i][j]=='E'||s2[i][j]=='F'){
+ letter++;
+}
+   }
+if(h==0){
+if(num==strlen(s2[i])){
+  strcpy(s3[b],s2[i]);
+  b++;}
+}
+if(h==1){
+    if(letter!=0){
+wll=strlen(s2[i])-1;
+sum=letter+num;
+if(sum==wll){
+   wl=strlen(s2[i])-1;
+   s2[i][wl]='\0';
+  strcpy(s3[b],s2[i]);
+  b++;}
+}
+}
+}
+
+c=0;
+for(i=0;i<b;i++){
+wl=strlen(s3[i])-1;
+exp=0;
+sum=0;
+ for(j=wl;j>=0;j--){
+ mult=0;
+temp=0;
+ switch(s3[i][j]){
+case '0':
+mult=0;break;
+case '1':
+mult=1;break;
+case '2':
+mult=2;break;
+case '3':
+mult=3;break;
+case '4':
+mult=4;break;
+case '5':
+mult=5;break;
+case '6':
+mult=6;break;
+case '7':
+mult=7;break;
+case '8':
+mult=8;break;
+case '9':
+mult=9;break;
+case 'A':
+mult=10;break;
+case 'B':
+mult=11;break;
+case 'C':
+mult=12;break;
+case 'D':
+mult=13;break;
+case 'E':
+mult=14;break;
+case 'F':
+mult=15;break;
+ }
+temp=mult*(pow(16,exp));
+sum=sum+temp;
+exp++;
+ }
+final[c]=sum;
+c++;
+}
+}
+void quiz::output(){
+if(c!=0){
+  for(i=0;i<c;i++){
+    cout<<s3[i]<<"="<<final[i]<<"\n";
+  }
+}
+else{
+cout<<"no input can be converted";}
+}

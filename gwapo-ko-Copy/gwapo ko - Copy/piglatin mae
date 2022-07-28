@@ -1,0 +1,93 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+class piglatin
+{
+public:
+   void input();
+   void Piglatin();
+   void output();
+int i,j,k,l,m,count,w,let,con[100],vow[100],n,o,p,v,c,vv,cc;
+char nw[100][100],a='a',temp,swap,y='y',str[100];
+};
+int main(int argc, char * argv[])
+{
+  piglatin a;
+  a. input();
+  a. Piglatin();
+  a. output();
+
+system ("PAUSE")
+return EXIT_SUCCESS;
+}
+
+void piglatin::input()
+{
+char str[100];
+cout<<"Enter a phrase:\n";
+gets(str);
+}
+void piglatin::Piglatin()
+{
+
+
+w=0;let=0;
+for(i=0;i<strlen(str);i++){
+if(str[i]!=' '&&str[i]!='\0'){
+nw[w][let]=str[i];
+z++;
+}
+else{
+nw[w][let]='\0';
+z=0;
+x++;
+}
+}
+
+v=0;
+c=0;
+
+for(i=0;i<=w;i++){
+if(nw[i][0]=='a'||nw[i][0]=='e'||nw[i][0]=='i'||nw[i][0]=='o'||nw[i][0]=='u'){
+vow[v]=i;
+v++;
+}
+else{
+con[c]=i;
+c++;
+}
+}
+
+}
+
+void piglatin::output()
+{
+
+vv=0;
+cc=0;
+
+for(i=0;i<=x;i++){
+
+
+if(i==con[cc]){
+swap=nw[i][0];
+l=strlen(nw[i]);
+for(j=1;j<strlen(nw[i]);j++){
+nw[i][j-1]=nw[i][j];
+}
+nw[i][l-1]=swap;
+puts(nw[i]);
+cout<<a<<y<<" ";
+cc++;
+}
+
+if(i==vow[vv]){
+puts(nw[i]);
+cout<<a<<y<<" ";
+}
+}
+
+

@@ -1,0 +1,26 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+
+
+   
+
+int main (int argc, char * argv[])
+
+{
+char num[5]={'m','i','m','i','s'}, i;
+char * ptr;
+ptr=num;
+for(i=0;i<4;i++){
+cout<<*ptr<<endl;
+ptr++;
+}
+
+ 
+
+
+return EXIT_SUCCESS;
+
+}

@@ -1,0 +1,438 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+
+struct node{
+int info;
+struct node *next;
+}
+*start;
+class single_llist{
+public:
+void overall();
+void menu();
+void insert_begin();
+void insert_last();
+void insert_pos();
+void del_pos();
+void update();
+void display();
+void rev_pos();
+void lines();
+
+
+single_llist(){
+start=NULL;
+}
+node *create_node(int);
+
+int i,choice;
+
+};
+
+int main (int argc, char * argv[])
+
+{
+single_llist a;
+a.overall();
+start=NULL;
+ 
+return EXIT_SUCCESS;
+
+}
+node *single_llist::create_node(int value){
+struct node *temp, *s;
+
+temp=new(struct node);
+if(temp==NULL){
+cout<<"Memory not allocated"<<endl;
+return 0;
+}
+else{
+temp->info=value;
+temp->next=NULL;
+return temp;
+}
+}
+
+void single_llist::menu(){
+lines();
+cout<<"Operations on single link list"<<endl;
+lines();
+
+cout<<"[1]:Insert Node at beginning"<<endl;
+cout<<"[2]:Insert Node at last"<<endl;
+cout<<"[3]:Insert Node at position"<<endl;
+cout<<"[4]:Delete a particular Node"<<endl;
+cout<<"[5]:Update Node value"<<endl;
+cout<<"[7]:Display List"<<endl;
+cout<<"[8]:Reverse Position"<<endl;
+cout<<"[9]:Exit"<<endl;
+lines();
+}
+
+   void single_llist::overall(){
+         
+       
+         while(1)
+         {
+            menu();
+            cout<<"Enter your choice: ";
+            cin>>choice;
+            lines();
+            switch(choice){
+                case 1:
+                   insert_begin();
+                   
+                   cout<<endl;
+                   break;
+                case 2:
+                   insert_last();
+                   
+                   cout<<endl;
+                   break;
+                case 3:
+                   insert_pos();
+                   
+                   cout<<endl;
+                   break;
+                case 4:
+                   del_pos();
+                   
+                   break;
+                case 5:
+                   update();
+                   
+                   cout<<endl;
+                   break;
+               
+                  case 7:
+                     display();
+                     cout<<endl;
+                     break;
+                  case 8:
+                  rev_pos();
+                   
+break;
+                  case 9:
+                     cout<<"Sayonara"<<endl;
+                     exit(1);
+                     break;
+                  default:
+                     cout<<"Invalid Choice"<<endl;
+                     }
+                 }
+         }
+
+void single_llist::insert_begin(){
+struct node*temp,*p;
+int value;
+
+cout<<"Input number: ";
+cin>>value;
+lines();
+
+if(value<0){
+cout<<"Number is less than 0"<<endl;
+lines();
+}
+if(value==0){
+cout<<"Number is equal to 0"<<endl;
+lines();
+}
+else{
+temp=create_node(value);
+if(start==NULL){
+start=temp;
+start->next=NULL;
+cout<<"Value inserted at beginning"<<endl;
+}
+else{
+p=start;
+start=temp;
+start->next=p;
+cout<<"Value inserted at beginning"<<endl;
+lines();
+}
+}
+}
+
+
+void single_llist::insert_last(){
+struct node *temp, *p, *s;
+int value;
+if(start==NULL){
+cout<<"List is empty"<<endl;
+lines();
+}
+else{
+cout<<"Input number: ";
+cin>>value;
+lines();
+
+if(value<0){
+cout<<"Number is less than 0"<<endl;
+lines();
+}
+if(value==0){
+cout<<"Number is equal to 0"<<endl;
+lines();
+}
+
+
+else{
+temp=create_node(value);
+p=start;
+while(p->next!=NULL){
+p=p->next;
+}
+temp->next=NULL;
+p->next=temp;
+cout<<"Value inserted at last"<<endl;
+lines();
+}
+}
+}
+
+
+
+void single_llist::insert_pos(){
+	int value;
+	int pos,ctr=0,i;
+if(start==NULL){
+cout<<"Link is empty"<<endl;
+lines();
+}
+else{
+	cout<<"Input number: ";
+cin>>value;
+lines();
+
+if(value<0){
+cout<<"Number is less than 0"<<endl;
+lines();
+}
+if(value==0){
+cout<<"Number is equal to 0"<<endl;
+lines();
+}
+    
+else{
+	struct node *temp,*s,*ptr;
+	temp=create_node(value);
+	cout<<"Enter position: ";
+    
+	cin>>pos;
+lines();
+	
+	s=start;
+	while(s!=NULL){
+		s=s->next;
+		ctr++;
+	}
+//if position is 1
+	if(pos==1){
+		if(start==NULL){
+			start=temp;
+			start->next=NULL;
+		}
+		else{
+			ptr=start;
+			start=temp;
+			start->next=ptr;
+		}
+	}
+// end;
+	else if(pos>1&&pos<=ctr){
+		s=start;
+		for(i=1;i<pos;i++){
+			ptr=s;
+			s=s->next;
+		}
+		ptr->next=temp;
+		temp->next=s;
+	}
+	else{
+		cout<<"Position out of range"<<endl;
+        lines();
+	}
+}
+}
+}
+
+
+
+void single_llist::del_pos(){
+int pos,ctr=0;
+struct node *ptr, *s;
+if(start==NULL){
+cout<<"List is empty"<<endl;
+}
+else{
+cout<<"Input position of value to be deleted: ";
+cin>>pos;
+lines();
+s=start;
+if(pos==1){
+start=s->next;
+free(s);
+cout<<"Element deleted"<<endl;
+
+}
+else{
+while(s!=NULL){
+s=s->next;
+ctr++;
+}
+if(pos>1&&pos<=ctr){
+s=start;
+for(i=1;i<pos;i++){
+ptr=s;
+s=s->next;
+}
+ptr->next=s->next;
+free(s);
+cout<<"Element deleted"<<endl;
+}
+else{
+cout<<"Position out of range"<<endl;
+lines();
+}
+}
+}
+}
+
+void single_llist::update(){
+  int value,pos,ctr=0;
+struct node *s, *ptr, *p;
+     if(start==NULL){
+         cout<<"List is empty"<<endl;
+lines();
+     }
+else{
+p=start;
+while(p!=NULL){
+ctr++;
+p=p->next;
+}
+cout<<"Input position of value to be updated: ";
+cin>>pos;
+cout<<endl;lines();
+if(pos>ctr){
+cout<<"Position out of range"<<endl;
+lines();
+}
+else{
+// Input value to update
+cout<<"Input number: ";
+cin>>value;
+lines();
+
+if(value<0){
+cout<<"Number is less than 0"<<endl;
+lines();
+}
+if(value==0){
+cout<<"Number is equal to 0"<<endl;
+lines();
+}
+
+else{
+     s=start;
+     if(pos==1){
+         start->info=value;
+ cout<<"Node Updated"<<endl;
+     }
+     else{
+          for(i=0;i<pos-1;i++){
+               if(s==NULL){
+                   cout<<"There are less than "<<pos<<" elements"<<endl;
+               }
+               else{
+               s=s->next;
+               }
+          }
+          s->info=value;
+ cout<<"Node Updated"<<endl;
+     }
+    
+}
+}
+}
+}
+
+void single_llist::display(){
+struct node *temp, *p;
+if(start==NULL){
+cout<<"List is empty"<<endl;
+}
+else{
+cout<<"Element(s) of the list:"<<endl;
+p=start;
+while(p!=NULL){
+cout<<p->info<<"->";
+p=p->next;
+}
+cout<<"NULL"<<endl;
+}
+lines();
+}
+
+void single_llist::rev_pos(){
+struct node *temp ,*p ,*s;
+int m,n,m_val,n_val,ctr=0,t,array[100];
+
+if(start==NULL){
+cout<<"List is empty"<<endl;
+lines();
+}
+else{
+cout<<"Input position m: ";
+cin>>m;
+cout<<endl<<"Input position n: ";
+cin>>n;
+cout<<endl;lines();
+
+p=NULL;
+ctr=0;
+if(m>n){
+t=n;
+n=m;
+m=t;
+}
+int nn=0;
+p=start;
+while(p!=NULL){
+ctr++;
+if(ctr>=m&&ctr<=n){
+array[nn]=p->info;
+nn++;
+}
+p=p->next;
+}
+p=NULL;
+ctr=0;
+p=start;
+i=(nn-1);
+while(p!=NULL){
+ctr++;
+if(ctr>=m&&ctr<=n){
+p->info=array[i];
+i--;
+}
+
+p=p->next;
+
+}
+}
+}
+
+
+
+
+
+void single_llist::lines(){
+cout<<"----------------------------------------------------------"<<endl;
+}

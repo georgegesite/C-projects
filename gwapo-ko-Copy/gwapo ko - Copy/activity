@@ -1,0 +1,96 @@
+#include<stdio.h>
+#include<string.h>
+main()
+{
+	char rekt[100], num[100][100], final[100],test;
+	int n,k,i,j=0,l=0,m=0,f=0;
+	printf("Enter for N:\n");
+	scanf("%d",&n); //getting the decimal place
+	printf("Enter the Number:\n");
+	scanf("%s",rekt); //getting the number value
+	k = strlen(rekt) - 1; //getting the length
+	for (i=0;i<=k;i++) 
+	{
+		if (rekt[i] == '.') {
+			j++;
+			l=0;
+		}
+		else {
+			num[j][l] = rekt[i];
+			l++;
+		}
+	}
+//	printf("%s\n%s\n",num[0],num[1]);
+ if	(num[1][n] < 53)
+ {
+ 	k = strlen(num[0]) - 1;
+ 	for ( i=0; i<=k;i++)
+ 	{
+ 		final[m] = num[0][i];
+ 		m++;
+ 	}
+ 	final[m] = '.';
+ 	m++;
+ 	for (f = 0; f<n; f++) 
+ 	{
+ 		final[m] = num[1][f];
+ 		m++;
+ 	}
+ 	printf("Round off : %s",final);
+ }
+ 	if ((num[1][n] > 53) && (num[1][n] < 58))
+ 	{
+ 		num[1][n-1] = num[1][n-1] + 1;
+ 		for (i= n-1; i>0;i--)
+ 		{
+ 			if (num[1][i] == 58) 
+ 			{
+ 				num[1][i-1] = num[1][i-1] + 1;
+ 			}
+ 		}
+ 		if (num[1][0] == 58)
+ 		{
+ 			k = strlen(num[0]) - 1;
+ 			num[0][k] = num[0][k] +1;
+ 			for (i=k;i>0;i--)
+ 			{
+ 				if (num[0][i]==58)
+ 				{
+ 					num[0][i-1]= num[0][i-1] +1;
+ 				}
+ 			}
+ 			if (num[0][0]==58) 
+ 			{
+ 				num[0][-1] = 49;
+ 				k = strlen(num[0]) -1;
+ 				for (i=k;i>-2;i--)
+ 				{
+ 					num[0][i+1] = num[0][1];
+ 				}
+ 			}
+ 		}
+ 	k= strlen(num[0]);
+ 	for (i=0; i<k;i++)
+ 	{
+ 		if (num[0][i] == 58)
+ 		{
+ 			num[0][i] = 48;
+ 		}
+ 		final[m] = num[0][i];
+ 		m++;
+ 	}
+ 	final[m] = '.';
+ 	m++;
+ 		for (i = 0; i < n ; i++) 
+ 	{
+ 	if(num[1][i] == 58) 
+ 	{
+ 		num[1][i] = 48;
+ 	}
+ 			final[m] = num[1][i];
+ 		m++;
+ 	}
+ 	printf(" Round off : %s",final);
+ }
+ 	return 0;
+}

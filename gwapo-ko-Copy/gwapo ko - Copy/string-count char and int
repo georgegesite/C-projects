@@ -1,0 +1,60 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+
+
+   
+
+int main (int argc, char * argv[])
+
+{
+
+char str[100];
+int num=0,let=0,i=0,sign=0;
+
+cout<<"Input string: ";
+gets(str);
+while(str[i]!='\0'){
+if(isalpha(str[i])){
+let++;
+}
+else if(isdigit(str[i])){
+num++;
+}
+else{
+sign++;
+}
+
+
+i++;
+}
+cout<<"Integer(s): ";
+if(num!=0){
+cout<<num<<endl;
+}
+else{
+cout<<"None"<<endl;
+}
+cout<<"Character(s): ";
+if(let!=0){
+cout<<let<<endl;
+}
+else{
+cout<<"None"<<endl;
+}
+cout<<"Symbol(s): ";
+if(sign!=0){
+cout<<sign<<endl;
+}
+else{
+cout<<"None"<<endl;
+}
+
+ 
+
+
+return EXIT_SUCCESS;
+
+}

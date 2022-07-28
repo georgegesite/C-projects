@@ -1,0 +1,92 @@
+#include <cstdlib>
+#include <iostream>
+
+using namespace std;
+
+/* Node Decleration */
+
+struct node
+{
+       int info;
+       struct node *next;
+}
+       *start;
+
+/* Class Definition */
+
+class single_llist
+{
+      public:
+             int choice,nodes,element,position,a,g;
+             int h,i,j,k,l,x,z,ct1,ct2,ct3,ct4,wholl,wholl1,whole,dec,deci,numb;
+             float num[100],prime[100],dec1,dec2,whol;
+             node* create_node(int);
+             
+             void insert_begin();
+  
+             single_llist()
+             {
+                 start=NULL;
+             }
+};
+
+/* Main: contains menu */
+
+
+int main(int argc, char *argv[])
+{
+    single_llist a;
+int c;
+    for(;;){
+cout<<"[1]: Insert at beginning\n[2]:Exit\n";
+cin>>c;
+if(c==1){
+a.insert begin();
+    
+    start=NULL;
+    system("PAUSE");
+    return EXIT_SUCCESS;
+}
+
+/* Creating Node */
+
+node * single_llist::create_node(int value)
+{
+     struct node *temp, *s;
+     temp= new(struct node);
+     if(temp==NULL)
+     {
+        cout<<"Memory not Allocated"<<endl;
+        return 0;
+     }
+     else
+     {
+         temp->info=value;
+         temp->next=NULL;
+         return temp;
+     }
+}
+
+/* Inserting element in beginning */
+
+void single_llist::insert_begin(){
+     int value;
+     struct node *temp, *p;
+     value=prime[x];
+     x++;
+     if(value==0){
+         /* numb=0; */
+         overall();
+     }
+     temp=create_node(value);
+     if(start==NULL){
+         start=temp;
+         start->next=NULL;
+     }
+     else{
+         p=start;
+         start=temp;
+         start->next=p;
+     }
+     cout<<"Element Inserted at Beginning..."<<endl;
+}

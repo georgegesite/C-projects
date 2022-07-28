@@ -1,0 +1,318 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+#include<cstddef>
+
+
+using namespace std;
+
+
+class Stack{
+public:
+void input();
+void pop();
+void push();
+void top();
+void bottom();
+void exit();
+void lines();
+void pre();
+void size_stack();
+
+char str[100],nw[100][100],real[100][100],stack[100][100],empty[100];
+int i,j,k,l,count,temp,val[100],wl,wll,r,s,v,size,n,p,vv,sum,wl1,mm[100],m,x,z,y;
+
+};
+
+
+   
+
+int main (int argc, char * argv[])
+
+{
+Stack a;
+char let[100];
+int c=0;
+a.lines();
+a.pre();
+for(;;){
+a.input();
+a.lines();
+cout<<"[A]:Push\n[B]:Pop\n[C]:Top\n[D]:Bottom\n[S]:Size of Stack\n[X]:Exit\n";
+a.lines();
+gets(let);
+a.lines();
+
+if(let[0]!='a'&&let[0]!='b'&&let[0]!='c'&&let[0]!='d'&&let[0]!='s'&&let[0]!='x'){
+cout<<"Invalid Choice"<<endl;
+}
+if((let[0]==' '&&let[0]==' ')||let[0]=='\0'){
+cout<<"No Choice Selected"<<endl;
+}
+
+if(let[0]=='a'){
+a.push();
+a.lines();
+}
+if(let[0]=='b'){
+a.pop();
+a.lines();
+}
+if(let[0]=='c'){
+a.top();
+a.lines();
+}
+if(let[0]=='d'){
+a.bottom();
+a.lines();
+}
+if(let[0]=='s'){
+a.size_stack();
+a.lines();
+}
+if(let[0]=='x'){
+a.exit();
+a.lines();
+}
+else{
+cout<<"Try Again"<<endl;
+a.lines();
+}
+}
+
+
+
+ 
+
+
+return EXIT_SUCCESS;
+
+}
+
+void Stack::pre(){
+for(i=0;i<40;i++){
+empty[i]='\0';
+}
+s=0;
+v=0;
+size=0;
+r=0;
+}
+
+void Stack::input(){
+if(size==0){
+
+cout<<"Input String:";
+gets(str);
+wl=strlen(str);
+x=0;
+z=0;
+
+for(i=0;i<wl;i++){
+if(str[i]!=' '&&str[i]!='\0'){
+nw[x][z]=str[i];
+z++;
+}
+else{
+nw[x][z]='\0';
+x++;
+z=0;
+}
+}
+
+vv=0;
+for(k=0;k<=x;k++){
+sum=0;
+wl1=strlen(nw[k]);
+for(l=0;l<wl1;l++){
+switch(nw[k][l])
+    {
+case 'a':temp=1;break;
+case 'b':temp=2;break;
+case 'c':temp=3;break;
+case 'd':temp=4;break;
+case 'e':temp=5;break;
+case 'f':temp=6;break;
+case 'g':temp=7;break;
+case 'h':temp=8;break;
+case 'i':temp=9;break;
+case'j':temp=10;break;
+case'k':temp=11;break;
+case'l':temp=12;break;
+case'm':temp=13;break;
+case'n':temp=14;break;
+case'o':temp=15;break;
+case'p':temp=16;break;
+case'q':temp=17;break;
+case'r':temp=18;break;
+case's':temp=19;break;
+case't':temp=20;break;
+case'u':temp=21;break;
+case'v':temp=22;break;
+case'w':temp=23;break;
+case'x':temp=24;break;
+case'y':temp=25;break;
+case'z':temp=26;break;
+default:temp=-10;break;
+    }
+temp=temp*temp;
+sum=sum+temp;
+   }
+val[vv]=sum;
+vv++;
+}
+
+r=0;
+m=0;
+for(i=0;i<=vv;i++){
+if(val[i]>0){
+count=0;
+if(i==vv){
+for(k=vv-1;k>=0;k--){
+if(val[vv]==val[k]){
+count=1;
+}
+}
+}
+for(j=i+1;j<=vv;j++){
+if(val[i]==val[j]){
+count=1;
+}
+}
+if(count==1){
+strcpy(real[r],nw[i]);
+r++;
+}
+}
+}
+
+if(r!=0){
+lines();
+cout<<"Anagram(s):"<<endl;
+for(i=0;i<=r;i++){
+cout<<real[i]<<" ";
+}
+cout<<endl;
+size=r;
+}
+if(r==0){
+lines();
+cout<<"No Anagrams"<<endl;
+size=0;
+}
+}
+}
+
+void Stack::push(){
+if(size==0){
+cout<<"No Anagrams to be Pushed"<<endl;
+}
+else{
+if(s==size){
+cout<<"Stack is Full"<<endl;
+cout<<"Stack:"<<endl;
+
+for(i=0;i<s;i++){
+cout<<stack[i]<<endl;
+}
+
+}
+else{
+if(real[r-1][0]!='\0'){
+strcpy(stack[s],real[r-1]);
+}
+else{
+strcpy(stack[s],"No More Anagram");
+}
+s++;
+r--;
+cout<<"Stack:"<<endl;
+for(i=0;i<s;i++){
+cout<<stack[i]<<endl;
+}
+
+}
+}
+}
+
+void Stack::pop(){
+if(r==0&&size==0){
+cout<<"No Anagrams to be Pop"<<endl;
+}
+else{
+if(s==1){
+s--;
+}
+if(s==0||s<0){
+cout<<"Stack is Empty"<<endl;
+size=0;
+s=0;
+for(i=0;i<20;i++){
+strcpy(nw[i],empty);
+strcpy(real[i],empty);
+strcpy(stack[i],empty);
+}
+}
+if(s>1){
+s--;
+cout<<"Stack:"<<endl;
+for(i=0;i<s;i++){
+cout<<stack[i]<<endl;
+}
+}
+}
+}
+
+void Stack::top(){
+if(s>=0){
+if(stack[0][0]!='\0'){
+cout<<"Top: "<<stack[0]<<endl;
+}
+else{
+cout<<"No Anagram to be Displayed"<<endl;
+}
+}
+else{
+cout<<"No Anagram to be Displayed"<<endl;
+}
+}
+
+void Stack::bottom(){
+if(s>1){
+count=1;
+count=strcmp(stack[s-1],"No More Anagram");
+if(count!=0){
+if(stack[s-1][0]!='\0'){
+cout<<"Bottom: "<<stack[s-1]<<endl;
+}
+}
+else{
+cout<<"No anagram to be Displayed"<<endl;
+
+}
+}
+else{
+cout<<"No anagram to be Displayed"<<endl;
+}
+}
+
+void Stack::exit(){
+cout<<"Program Terminated"<<endl;
+}
+
+void Stack::lines(){
+cout<<"--------------------------------------------------------"<<endl;
+}
+
+
+void Stack::size_stack(){
+if(size!=0){
+cout<<"Size of Stack:"<<size<<endl;
+}
+else{
+cout<<"Size of Stack: 0"<<endl;
+}
+}
+
+

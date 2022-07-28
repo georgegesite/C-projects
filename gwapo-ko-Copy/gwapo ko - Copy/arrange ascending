@@ -1,0 +1,48 @@
+#include<cstdlib>
+#include<iostream>
+
+using namespace std;
+
+int main (int argc, char * argv[])
+
+{
+  int i,j,k,l,m,n,o,p,q,r,swap,position,array[100],temp,s,num,nums;
+
+cout<<"Input number:";
+cin>>num;
+
+
+for(i=0;num!=0;i++){
+array[i]=num%10;
+num=num/10;
+}
+
+
+cout<<"\n";
+
+for(j=0;j<i;j++){
+position=j;
+for(k=j+1;k<i;k++){
+if(array[position]<array[k]){
+position=k;}
+
+if(position!=j){
+swap=array[position];
+array[position]=array[j];
+array[j]=swap;
+}
+}
+}
+
+for(l=j-1;l>=0;l--){
+cout<<array[l];
+}
+
+
+
+
+
+system("PAUSE");
+return EXIT_SUCCESS;
+
+}

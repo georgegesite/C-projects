@@ -1,0 +1,17 @@
+#include<stdio.h>
+#include<string.h>
+main()
+{
+char x[100],y[100];
+int i,j,k;
+printf("enter word:");
+gets(x);
+strcpy(y,x);
+strrev(y);
+k=strcmp(x,y);
+if(k==0){
+printf("palindrome");
+}
+else{
+printf("not a palindrome");}
+}

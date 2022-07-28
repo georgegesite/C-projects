@@ -1,0 +1,101 @@
+#include<cstdlib>
+#include<iostream>
+
+
+
+using namespace std;
+class calcu{
+    public:
+          void option();
+          void add();
+          void mult();
+          void exit();
+          void lines();
+
+          
+          int i,j,k,l,m,num[100],n[100],sum,c;
+          char str[100][100],in[100],let[100];
+            
+           
+};
+int main(int argc,char * argv[])
+{
+calcu a;
+char let[100];
+
+for(;;){
+a.option();
+a.lines();
+gets(let);
+if(let[0]=='A'||let[0]=='a'){
+a.add();
+a.lines();
+}
+if(let[0]=='B'||let[0]=='b'){
+a.mult();
+a.lines();
+}
+if(let[0]=='X'||let[0]=='x'){
+a.exit();
+break;
+}
+}
+
+
+
+
+
+
+ 
+return EXIT_SUCCESS;
+}
+
+void calcu::option(){
+
+cout<<"Press\n[A]:Addition\n[B]:Multiply\n[X]:Exit\n";
+
+
+}
+
+void calcu::add(){
+cout<<"Enter '=' to calculate:\n";
+sum=0;
+c=0;
+for(;;){
+gets(in);
+if(c!=0||in[0]!='='){
+cout<<"+\n";
+}
+if(in[0]!='='){
+n[0]=atoi(in);
+sum=sum+n[0];
+}
+if(in[0]=='='){
+cout<<"Total: "<<sum<<"\n";
+break;
+}
+}
+}
+void calcu::mult(){
+cout<<"Enter '=' to calculate:\n";
+sum=1;
+for(;;){
+gets(in);
+if(in[0]!='='){
+cout<<"*\n";
+n[0]=atoi(in);
+sum=sum*n[0];
+}
+if(in[0]=='='){
+cout<<"Product: "<<sum<<"\n";
+break;}
+}
+}
+
+void calcu::exit(){
+cout<<"Program Terminated";
+}
+
+void calcu::lines(){
+cout<<"----------------------------------------------\n";
+}

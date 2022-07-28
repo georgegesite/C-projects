@@ -1,0 +1,42 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstddef>
+typedef char * array;
+using namespace std;
+
+class stack{
+public:
+array str;
+    void input();
+void exit();
+void  output();
+int i,x;
+};
+int main(int argc ,char *argv[]){
+char let[100];
+stack a;
+for(;;){
+a.input();
+a.output();
+cout<<"[X]: Exit\n[C]: Continue\n";
+gets(let);
+if(let[0]=='X'||let[0]=='x'){
+a.exit();
+break;
+}
+}
+return EXIT_SUCCESS;
+}
+void stack::input(){
+str=new char[x];
+cout<<"Input string: ";
+gets(str);
+x=strlen(str);
+}
+void stack::output(){
+cout<<" String Input: ";
+puts(str);
+}
+void stack::exit(){
+cout<<"Terminate\n";
+}

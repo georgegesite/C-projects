@@ -1,0 +1,33 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+
+
+   
+
+int main (int argc, char * argv[])
+
+{
+int i;
+char *str;
+char string[100][100];
+str=string[0];
+
+
+strcpy(string[0],"hello");
+strcpy(string[1],"world");
+
+for(i=0;i<5;i++){
+cout<<*str<<endl;
+str++;
+}
+
+
+ 
+
+
+return EXIT_SUCCESS;
+
+}

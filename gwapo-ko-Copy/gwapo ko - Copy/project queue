@@ -1,0 +1,197 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+
+class queue{
+public:
+
+void input();
+void enqueue();
+void dequeue();
+void exit();
+
+
+char str[100],nw[100][100],real[100][100],stack[100][100],siz[100],empty[100];
+int i,j,k,l,wl,wll,s=0,v=0,size=0,z,x,n,count,r;
+
+};
+
+
+   
+
+int main (int argc, char * argv[])
+
+{
+
+queue a;
+char let[100];
+
+
+
+for(;;){
+a.input();
+cout<<"[A]:Enqueue\n[B]:Dequeue\n[X]:Exit\n";
+
+gets(let);
+
+if(let[0]=='A'||let[0]=='a'){
+a.enqueue();
+
+}
+if(let[0]=='B'||let[0]=='b'){
+a.dequeue();
+
+}
+if(let[0]=='X'||let[0]=='x'){
+a.exit();
+break;
+}
+else{
+cout<<"Try Again\n";
+
+}
+}
+ 
+
+
+return EXIT_SUCCESS;
+
+}
+
+void queue::input(){
+if(size==0){
+strcpy(nw[0],empty);
+strcpy(nw[1],empty);
+cout<<"Input String:";
+gets(str);
+wl=strlen(str);
+z=0;
+x=0;
+
+for(i=0;i<wl;i++){
+if(str[i]!=' '&&str[i]!='\0'){
+nw[x][z]=str[i];
+z++;
+}
+else{
+nw[x][z]='\0';
+x++;
+z=0;
+}
+}
+ r=0;
+for(i=0;i<=x;i++){
+count=0;
+wl=strlen(nw[i]);
+for(j=0;j<wl;j++){
+if((nw[i][j]=='a'&&nw[i][j+1]=='a')||(nw[i][j]=='e'&&nw[i][j+1]=='e')||(nw[i][j]=='i'&&nw[i][j+1]=='i')||(nw[i][j]=='o'&&nw[i][j+1]=='o')||(nw[i][j]=='u'&&nw[i][j+1]=='u')){
+count++;
+}
+}
+if(count==0){
+strcpy(real[r],nw[i]);
+strcpy(nw[i],empty);
+r++;
+}
+}
+wll=strlen(nw[i]);
+for(j=0;j<wll;j++){
+nw[i][j]='\0';
+}
+
+if(r!=0){
+n=1;
+
+cout<<"Size of Queue: "<<r<<endl;
+cout<<"Filtered String:\n";
+size=r;
+for(i=0;i<=r;i++){
+cout<<real[i]<<endl;
+}
+}
+else{
+cout<<"No String to be Queued"<<endl;
+
+n=0;
+}
+}
+}
+
+void queue::enqueue(){
+
+if(n!=0){
+   if(s==size){
+cout<<"Queue is Full"<<endl;
+
+cout<<"Queue:\n";
+for(i=0;i<s;i++){
+cout<<stack[i]<<endl;
+}
+
+   }
+else if(s!=size){
+  strcpy(stack[s],real[r-1]);
+  strcpy(real[r-1],empty);
+  s++;
+  r--;
+cout<<"Queue:\n";
+for(i=0;i<s;i++){
+cout<<stack[i]<<endl;
+}
+
+}
+v++;
+}
+else if(n==0){
+cout<<"No String to be Queued"<<endl;
+
+}
+}
+
+void queue::dequeue(){
+if(s==1){
+s--;
+}
+if(s==0){
+cout<<"Queue is Empty"<<endl;
+for(i=0;i<=r;i++){
+strcpy(real[i],empty);
+}
+for(i=0;i<=size;i++){
+strcpy(stack[i],empty);
+}
+for(i=0;i<=10;i++){
+strcpy(nw[i],empty);
+}
+size=0;
+
+v=0;
+}
+if(s!=0&&s!=1){
+for(i=0;i<s;i++){
+if(i!=(s-1)){
+strcpy(stack[i],stack[i+1]);
+}
+}
+s--;
+cout<<"Queue:\n";
+for(i=0;i<s;i++){
+cout<<stack[i]<<endl;
+}
+
+
+}
+
+
+}
+
+
+void queue::exit(){
+cout<<"Program Terminated"<<endl;
+
+}
+
+
+  

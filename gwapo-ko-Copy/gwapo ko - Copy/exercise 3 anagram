@@ -1,0 +1,112 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+
+using namespace std;
+
+class exercise{
+public:
+     void input();
+     void process();
+     void output();
+
+char str[100],wc[100][100],final[100][100],temp[100][100];
+int i,j,k,l,m,n,o,p,f,wl,wll,add=2,found,none,len,x,z,count=0;
+
+};
+
+
+
+int main(int argc, char * argv [])
+{
+    exercise a;
+    a. input();
+    a. process();
+    a.output();
+
+return EXIT_SUCCESS;
+
+}
+
+void exercise::input()
+{
+    gets(str);
+}
+
+void exercise::process()
+{
+   wl=strlen(str);
+
+   x=0;
+   z=0;
+for(i=0;i<wl;i++){
+   if(str[i]!=' '&&str[i]!='\0'){
+         wc[x][z]=str[i];
+              z++;
+   }
+   else{
+         wc[x][z]='\0';
+              x++;
+              z=0;
+   }
+}
+
+f=0;
+p=-1;
+
+for(i=0;i<x;i++){
+    
+wl=strlen(wc[i]);
+
+    for(j=i+1;j<x;j++){
+p++;
+         none=0;
+         strcpy(temp[p],wc[j]);
+       
+         wll=strlen(temp[p]);
+    if(wl==wll){
+found=0;
+        for(k=0;k<wl;k++){
+             
+                  for(l=0;l<wll;l++){
+                       if(wc[i][k]==temp[p][l]){
+                       found=1;
+                       temp[p][l]='+';
+                       break;
+                       }
+                  }
+                  if(found==0){
+                      none=1;
+                      break;
+                  }
+        }
+        
+if(none==0){
+   strcpy(final[f],wc[i]);
+   len=strlen(wc[j])+2;
+   for(m=add;m>0;m--){
+       wc[j][len]='+';
+       len--;}
+add++;
+f++;
+}
+    }
+    }
+}
+}
+
+
+void exercise::output(){
+
+for(i=0;i<=f;i++){
+if(final[i][0]!=' '){
+count++;}
+}
+if(count!=0){
+cout<<"\nanagram:"<<count;}
+else{
+cout<<"\nno anagram";}
+
+}
+
+  

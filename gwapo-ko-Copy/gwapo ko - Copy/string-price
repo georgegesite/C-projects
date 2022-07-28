@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<string.h>
+main()
+{
+char price[100];
+int length,i;
+printf("enter price:");
+gets(price);
+length=strlen(price);
+printf("coded value:");
+for(i=0;i<=length;i++){
+switch(price[i]){
+case '0': printf("X"); break;
+case '1':printf("C"); break;
+case '2':printf("O"); break;
+case '3': printf("M"); break;
+case '4':  printf("P"); break;
+case '5': printf("U"); break;
+case '6': printf("T"); break;
+case '7': printf("E"); break;
+case '8': printf("R"); break;
+case '9': printf("S"); break;
+case '.': printf("."); break;
+}
+}
+}

@@ -1,0 +1,64 @@
+#include<cstdlib>
+#include<iostream>
+
+using namespace std;
+
+int main (int argc, char * argv[])
+
+{
+  char str[100],str1[100],swap;
+int i,j,k,l,m,n,o,p,count,x,start[100],end[100];
+
+cout<<"Input words:\n";
+
+gets(str);
+x=strlen(str)-1;
+x++;
+str[x]=' ';
+
+j=1;
+l=0;
+start[0]=0;
+for(k=1;k<=x;k++){
+if(str[k]==' '){
+start[j]=k+1;
+end[l]=k-1;
+j++;
+l++;
+}
+}
+for(m=0;m<l;m++){
+n=start[m];
+o=end[m];
+
+count=0;
+if((str[0]=='a')||(str[0]=='e')||(str[0]=='i')||(str[0]=='o')||(str[0]=='u')){
+count++;
+}
+
+if(count!=0){
+o=o+2;
+str[o]='y';
+str[o-1]='a';
+puts(str);}
+
+else{
+swap=str[n];
+for(p=1;p<=o;p++){
+str[p-1]=str[p];}
+str[o]=swap;
+o=o+2;
+str[o]='y';
+str[o-1]='a';
+puts(str);
+}
+cout<<" ";
+}
+
+
+
+
+system("PAUSE");
+return EXIT_SUCCESS;
+
+}

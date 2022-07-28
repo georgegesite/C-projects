@@ -1,0 +1,22 @@
+#include<stdio.h>
+#include<string.h>
+main()
+{
+char mes[100];
+int length,i;
+printf("Input Encrypted message:\n");
+gets(mes);
+length=strlen(mes);
+printf("Decrypted message:");
+for(i=0;i<length;i++){
+switch(mes[i]){
+case '*': mes[i]= 'a'; break;
+case '$': mes[i]= 'e'; break;
+case '/': mes[i]= 'i'; break;
+case '+': mes[i]= 'o'; break;
+case '-': mes[i]= 'u'; break;
+default: mes[i]=mes[i];
+}
+}
+puts(mes);
+}

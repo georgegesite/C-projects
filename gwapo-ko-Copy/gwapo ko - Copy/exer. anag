@@ -1,0 +1,141 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+
+class anagram
+{
+   public:
+       void input();
+       void process();
+       void output();
+    char str[100],nw[100][100];
+    int i,j,k,l,m,n,count,val[100],x,z,wl,v,vv,sum,temp;
+
+};
+
+
+   
+
+int main (int argc, char * argv[])
+
+{
+anagram a;
+a.input();
+a.process();
+a.output();
+ 
+
+
+return EXIT_SUCCESS;
+
+}
+void anagram::input()
+{
+   cout<<"input string(s): ";
+   gets(str);
+   
+}
+void anagram::process()
+{
+
+x=0;z=0;
+   
+   for(i=0;i<strlen(str);i++)
+{
+   if(str[i]!=' '&&str[i]!='\0')
+{
+   nw[x][z]=str[i];
+   z++;
+}
+   else
+{
+   nw[x][z]='\0';
+   x++;
+   z=0;
+}
+}
+
+v=0;
+for(i=0;i<=x;i++)
+{
+   sum=0;
+   wl=strlen(nw[i]);
+   for(j=0;j<wl;j++)
+   {
+    switch(nw[i][j])
+    {
+case 'a':temp=1;break;
+case 'b':temp=2;break;
+case 'c':temp=3;break;
+case 'd':temp=4;break;
+case 'e':temp=5;break;
+case 'f':temp=6;break;
+case 'g':temp=7;break;
+case 'h':temp=8;break;
+case 'i':temp=9;break;
+case'j':temp=10;break;
+case'k':temp=11;break;
+case'l':temp=12;break;
+case'm':temp=13;break;
+case'n':temp=14;break;
+case'o':temp=15;break;
+case'p':temp=16;break;
+case'q':temp=17;break;
+case'r':temp=18;break;
+case's':temp=19;break;
+case't':temp=20;break;
+case'u':temp=21;break;
+case'v':temp=22;break;
+case'w':temp=23;break;
+case'x':temp=24;break;
+case'y':temp=25;break;
+case'z':temp=26;break;
+    }
+temp=temp*temp;
+sum=sum+temp;
+   }
+val[v]=sum;
+v++;
+}
+
+count=0;
+x=-1;
+z=0;
+for(i=0;i<v;i++)
+{
+    for(j=i+1;j<v;j++)
+    {
+          if(val[i]==val[j])
+          {
+             
+              val[j]= x;
+              x--;
+              z++;
+          }
+    }
+    if(z>0)
+    {
+     count++;
+    }
+    
+z=0;
+}
+
+
+}
+
+void anagram::output()
+{
+    if(count>0){
+cout<<"anagram(s) found: "<<count;
+    }
+else{
+   cout<<"no anagrams";
+}
+}
+         
+
+   
+       

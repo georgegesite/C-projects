@@ -1,0 +1,56 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+
+
+   
+
+int main (int argc, char * argv[])
+
+{
+int i,j,k,l;
+float weker,buli,basket,gross=0,five=0,six=0,seven=0,total_weker=0,material=0,f,s,sev;
+
+f=2.20;
+s=2.60;
+sev=3.70;
+
+cout<<"Calculator"<<endl;
+cout<<"Buli: ";
+cin>>buli;
+cout<<endl;
+cout<<"Weker:"<<endl;
+cout<<"5mm: ";
+cin>>five;
+cout<<"6mm: ";
+cin>>six;
+cout<<"7mm: ";
+cin>>seven;
+cout<<endl;
+cout<<"Basket Total: ";
+cin>>basket;
+cout<<endl;
+
+buli=buli*45.00;
+five=five*f;
+six=six*s;
+seven=seven*sev;
+total_weker=five+six+seven;
+
+material=total_weker+buli;
+
+gross=basket-material;
+cout<<"Gross: "<<basket<<endl;
+cout<<"Net: "<<gross;
+
+
+
+
+ 
+
+
+return EXIT_SUCCESS;
+
+}

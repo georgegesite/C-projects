@@ -1,0 +1,58 @@
+#include<cstdlib>
+#include<iostream>
+#include<math.h>
+#define PI 3.1415926
+
+using namespace std;
+class mech{
+public:
+   void input();
+   void process();
+   void output();
+  
+   float ab,ae,bc,cd,p,fae,fab,fbc,temp,ac,be;
+};
+
+   
+
+int main (int argc, char * argv[])
+
+{
+ //instance
+mech a;
+a.process();
+
+
+return EXIT_SUCCESS;
+
+}
+//definition
+void mech::process()
+{
+float extra;
+cout<<"AB=";
+cin>>ab;
+cout<<"BC=";
+cin>>bc;
+cout<<"CD=";
+cin>>cd;
+cout<<"P=";
+cin>>p;
+ab=ab*PI/180;
+extra=asin(ab);
+cout<<extra<<"\n";
+ac=ab+bc;
+temp=ab/ac;
+be=temp*cd;
+temp=pow(ab,2)+pow(be,2);
+ae=sqrt(temp);
+temp=be/ae;
+fae=p/temp;
+cout<<"Force AE="<<fae<<"(C)";
+temp=fae*ab;
+fab=temp/ae;
+cout<<"\nForce AB="<<fab<<"(T)";
+cout<<"\nForce BC="<<fab<<"(T)";
+cout<<"\nForce DE="<<fab<<"(C)"; 
+
+}

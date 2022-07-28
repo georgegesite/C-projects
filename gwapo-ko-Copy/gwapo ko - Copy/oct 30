@@ -1,0 +1,68 @@
+#include<stdio.h>
+main()
+{
+long i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,num,nums,array[100],count,ihap,start,end,factor[100],rem;
+
+printf("enter end:\n");
+printf("2 to ");
+scanf("%ld",&end);
+start=2;
+
+for(r=start;r<=end;r++){
+num=r;
+nums=num;
+z=nums;
+
+if(num>10){
+for(i=0;num!=0;i++){
+array[i]=num%10;
+num=num/10;
+}
+
+j=i-1;
+count=0;
+ihap=0;
+
+if(y==0){
+for(l=i-2;l>=0;l--){
+if(array[j]<array[l]){
+count++;}
+if(array[l]<array[j]){
+ihap++;}
+j--;
+}
+
+if((count==i-1)&&(ihap==0)){
+m=2;
+n=0;
+for(o=1;nums!=1;o++){
+if(nums%m==0){
+factor[n]=m;
+nums=nums/m;
+m=2;
+n++;
+}
+else{
+m++;}
+}
+v=0;
+t=0;
+for(u=1;u<n;u++){
+if(factor[t]==factor[u]){
+ v++;}
+t++;
+}
+
+if(v==0){
+printf("%ld=",z);
+for(w=0;w<n;w++){
+printf("%ld ",factor[w]);
+}
+printf(" \n");
+}
+}
+}
+}
+}
+return 0;
+}

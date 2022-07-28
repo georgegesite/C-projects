@@ -1,0 +1,20 @@
+{
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "path": "..\\..\\2nd year 1st sem\\CPE 211 Data Structures and Algorithm Analysis"
+        },
+        {
+            "path": ".."
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "new": "cpp",
+            "ostream": "cpp",
+            "iostream": "cpp"
+        }
+    }
+}

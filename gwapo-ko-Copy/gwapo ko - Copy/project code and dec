@@ -1,0 +1,308 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+
+class Code{
+public:
+void input();
+void code();
+void decode();
+void lines();
+
+
+char str[100],nw[100][100],option[100];
+int i,j,k,l,m,n,count,val[100],v,vv,wl,wll,temp[100],sum,enter=0,x,z;
+
+};
+
+
+   
+
+int main (int argc, char * argv[])
+
+{
+Code a;
+char let[100],pass[100],lets[100];
+int c,d,e,f;
+
+a.lines();
+cout<<"Password: ";
+gets(lets);
+cout<<endl;
+c=strcmp(lets,"pass");
+a.lines();
+
+if(c==0){
+a.input();
+}
+else{
+cout<<"Goodbye Intruder"<<endl;
+a.lines();
+}
+
+
+
+
+
+return EXIT_SUCCESS;
+
+}
+
+void Code::input(){
+for(;;){
+if(enter!=0){
+cout<<"Program Terminated"<<endl;
+lines();
+break;
+}
+else{
+cout<<"Input Code: ";
+gets(str);
+lines();
+if(str[0]=='0'||str[0]=='1'){
+l=1;
+}
+else{
+l=0;
+}
+if(l==1){
+for(;;){
+cout<<"[A]:Decode\n[B]:Enter Another Code\n[X]:Exit"<<endl;
+lines();
+cout<<"Enter Choice:";
+gets(option);
+lines();
+if(option[0]==' '||option[0]=='\0'){
+cout<<"No Choice Selected"<<endl;
+lines();
+}
+if(option[0]=='A'||option[0]=='a'){
+decode();
+break;
+lines();
+}
+if(option[0]=='B'||option[0]=='b'){
+break;
+}
+if(option[0]=='X'||option[0]=='x'){
+enter=1;
+break;
+}
+else{
+cout<<"Try Again"<<endl;
+lines();
+}
+}
+}
+else if(l==0){
+for(;;){
+cout<<"[A]:Code\n[B]:Enter Another Code\n[X]:Exit\n";
+lines();
+cout<<"Enter Choice:";
+gets(option);
+lines();
+if(option[0]==' '||option[0]=='\0'){
+cout<<"No Choice Selected"<<endl;
+lines();
+}
+if(option[0]=='A'||option[0]=='a'){
+code();
+lines();
+break;
+}
+if(option[0]=='X'||option[0]=='x'){
+enter=1;
+break;
+}
+if(option[0]=='B'||option[0]=='b'){
+break;
+}
+else{
+cout<<"Try Again"<<endl;
+lines();
+}
+}
+}
+}
+}
+}
+
+void Code::code(){
+x=0;
+z=0;
+wl=strlen(str);
+
+for(i=0;i<wl;i++){
+if(str[i]!=' '&&str[i]!='\0'){
+   nw[x][z]=str[i];
+   z++;
+}
+else{
+nw[x][z]='\0';
+x++;
+z=0;
+}
+}
+
+for(i=0;i<=x;i++){
+wl=strlen(nw[i]);
+    for(j=0;j<wl;j++){
+switch(nw[i][j]){
+case 'a':cout<<"00001";break;
+case 'b':cout<<"00010";break;
+case 'c':cout<<"00011";break;
+case 'd':cout<<"00100";break;
+case 'e':cout<<"00101";break;
+case 'f':cout<<"00110";break;
+case 'g':cout<<"00111";break;
+case 'h':cout<<"01000";break;
+case 'i':cout<<"01001";break;
+case'j':cout<<"01010";break;
+case'k':cout<<"01011";break;
+case'l':cout<<"01100";break;
+case'm':cout<<"01101";break;
+case'n':cout<<"01110";break;
+case'o':cout<<"01111";break;
+case'p':cout<<"10000";break;
+case'q':cout<<"10001";break;
+case'r':cout<<"10010";break;
+case's':cout<<"10011";break;
+case't':cout<<"10100";break;
+case'u':cout<<"10101";break;
+case'v':cout<<"10110";break;
+case'w':cout<<"10111";break;
+case'x':cout<<"11000";break;
+case'y':cout<<"11001";break;
+case'z':cout<<"11010";break;
+          }
+    }
+}
+cout<<endl;
+}
+
+void Code::decode(){
+
+x=0;
+z=0;
+wl=strlen(str);
+i=0;
+j=0;
+count=1;
+for(;;){
+if(str[i]=='\0'){
+break;
+}
+else{
+if(count<=5){
+nw[x][z]=str[i];
+z++;
+count++;
+i++;
+}
+else{
+nw[x][z]='\0';
+x++;
+z=0;
+count=1;
+}
+}
+}
+
+
+
+k=0;
+for(i=0;i<=x;i++){
+temp[k]=atoi(nw[i]);
+if(temp[k]==1){
+cout<<"a";
+}
+if(temp[k]==10){
+cout<<"b";
+}
+if(temp[k]==11){
+cout<<"c";
+}
+if(temp[k]==100){
+cout<<"d";
+}
+if(temp[k]==101){
+cout<<"e";
+}
+if(temp[k]==110){
+cout<<"f";
+}
+if(temp[k]==111){
+cout<<"g";
+}
+if(temp[k]==1000){
+cout<<"h";
+}
+if(temp[k]==1001){
+cout<<"i";
+}
+if(temp[k]==1010){
+cout<<"j";
+}
+if(temp[k]==1011){
+cout<<"k";
+}
+if(temp[k]==1100){
+cout<<"l";
+}
+if(temp[k]==1101){
+cout<<"m";
+}
+if(temp[k]==1110){
+cout<<"n";
+}
+if(temp[k]==1111){
+cout<<"o";
+}
+if(temp[k]==10000){
+cout<<"p";
+}
+if(temp[k]==10001){
+cout<<"q";
+}
+if(temp[k]==10010){
+cout<<"r";
+}
+if(temp[k]==10011){
+cout<<"s";
+}
+if(temp[k]==10100){
+cout<<"t";
+}
+if(temp[k]==10101){
+cout<<"u";
+}
+if(temp[k]==10110){
+cout<<"v";
+}
+if(temp[k]==10111){
+cout<<"w";
+}
+if(temp[k]==11000){
+cout<<"x";
+}
+if(temp[k]==11001){
+cout<<"y";
+}
+if(temp[k]==11010){
+cout<<"z";
+}
+else if(temp[k]>11010){
+cout<<"\nCode Invalid"<<endl;
+lines();
+}
+k++;
+}
+cout<<endl;
+lines();
+}
+
+void Code::lines(){
+cout<<"-----------------------------------------------------------"<<endl;
+}

@@ -1,0 +1,286 @@
+#include<cstdlib>
+#include<iostream>
+#include<math.h>
+#define PI 3.1415926
+
+using namespace std;
+class mech{
+public:
+   void input();
+   void prob1();
+   void prob54();
+   void prob40();
+   void output();
+   void reset();
+   void lines();
+  
+   float fab,fcb,fbg,fcf,fag,fgf,fef,fed,fcd,ffd,fgc,ax,ay,ey,gy,fy,temp,ang1,ang2,bc,ab,ag,f,fi,fj,fk,a,b,c,d,fac,dk,bk,ak,fad,fdb,fe,hy,ad,op,ah,bh,fah,cd,fbc;
+};
+
+   
+
+int main (int argc, char * argv[])
+
+{
+mech a;
+int x=0,x1=0;
+a.lines();
+while(x!=3){
+cout<<"[1]:2d Truss\n";
+cout<<"[2]:3d Truss\n";
+cout<<"[3]:Exit\n";
+a.lines();
+cout<<"Choice:";
+cin>>x;
+a.lines();
+if(x==1){
+cout<<"[1]:Figure 1\n";
+cout<<"[2]:Figure 2\n";
+a.lines();
+cout<<"Choice:";
+cin>>x1;
+if(x1==1){
+a.prob1();
+}
+if(x1==2){
+a.prob40();
+}
+if(x1>2||x1<1){
+cout<<"Invalid Choice\n";
+a.lines();
+}
+}
+if(x==2){
+a.prob54();
+}
+if(x==3){
+cout<<"Program Terminated\n";
+}
+if(x>3){
+a.lines();
+cout<<"Invalid Choice\n";
+a.lines();
+}
+}
+a.lines();
+
+
+
+return EXIT_SUCCESS;
+
+}
+//definition
+void mech::prob1()
+{
+lines();
+cout<<"Figure 1\n";
+lines();
+cout<<"Input given lengths in terms of meters.\n";
+cout<<"Input length AB:";
+cin>>ab;
+cout<<"Input length AG:";
+cin>>ag;
+cout<<"Input length BC:";
+cin>>bc;
+cout<<"Input give forces in terms of kN.\n";
+cout<<"Input Force Gy:";
+cin>>gy;
+cout<<"Input Force Fy:";
+cin>>fy;
+cout<<"Input Angle between AH and AB:";
+cin>>ang1;
+lines();
+ang2=90-ang1;
+ang1=ang1*PI/180;
+ang2=ang2*PI/180;
+ey=((gy*ag)+(fy*(ag*2)))/(ag*3l);
+fed=ey/cos(ang1);
+cout<<"Force ED:"<<fed<<"kN (C)\n";
+cout<<"Force FD:"<<fed<<"kN (T)\n";
+cout<<"Force CD:"<<fed<<"kN (C)\n";
+fef=fed*cos(ang2);
+cout<<"Force EF:"<<fef<<"kN (T)\n";
+fcf=(fy-(fed*cos(ang1)))/cos(ang1);
+cout<<"Force CF:"<<fcf<<"kN (T)\n";
+fgf=fef+(fed*cos(ang2))-(fcf*cos(ang2));
+cout<<"Force GF:"<<fgf<<"kN (T)\n";
+cout<<"Force CG:"<<fcf<<"kN (C)\n";
+cout<<"Force AB:"<<fcf<<"kN (T)\n";
+fcb=(fcf*cos(ang2))*2-fed;
+fcb=fcb*-1;
+cout<<"Force CB:"<<fcb<<"kN (C)\n";
+cout<<"Force BG:"<<fcb<<"kN (T)\n";
+fag=(fcf*cos(ang2))+(fcb*cos(ang2))-fgf;
+fag=fag*-1;
+cout<<"Force AG:"<<fag<<"kN (C)\n";
+lines();
+reset();
+}
+void mech::prob54(){
+lines();
+cout<<"Figure 3:Space Truss\n";
+lines();
+cout<<"Input given forces in terms of lb.\n";
+cout<<"Input Given Force:\n";
+cout<<"i:";
+cin>>fi;
+cout<<"j:";
+cin>>fj;
+cout<<"k:";
+cin>>fk;
+lines();
+if(fi<0){
+fi=fi*-1;
+}
+if(fj<0){
+fj=fj*-1;
+}
+if(fk<0){
+fk=fk*-1;
+}
+cout<<"Input given angle in terms of degrees.\n";
+cout<<"Input angle between AD and AO:";
+cin>>ang1;
+lines();
+ang1=ang1*PI/180;
+cout<<"Input given lengths in terms of ft.\n";
+cout<<"In the x axis:Distance from origin to A:";
+cin>>a;
+cout<<"In the y axis:Distance from origin to B:";
+cin>>b;
+cout<<"In the z axis:Distance from origin to C:";
+cin>>c;
+cout<<"In the y axis:Distance from origin to D:";
+cin>>d;
+lines();
+
+temp=sqrt(pow(a,2)+pow(c,2));
+a=a/temp;
+ak=c/temp;
+fac=fi/a;
+cout<<"Force CA:"<<fac<<"lb (T)\n";
+
+temp=sqrt(pow(b,2)+pow(c,2));
+b=b/temp;
+bk=c/temp;
+temp=sqrt(pow(d,2)+pow(c,2));
+d=d/temp;
+dk=c/temp;
+fcb=(fk-((fj/d)*(dk))-(fac*ak))/(bk*2);
+fcd=((-fcb*b)+fj)/d;
+fcd=fcd*-1;
+cout<<"Force CB:"<<fcd<<"lb (C)\n";
+cout<<"Force CD:"<<fcb<<"lb (T)\n";
+fad=(fac*a)/(2*sin(ang1));
+cout<<"Force AD:"<<fad<<"lb (C)\n";
+cout<<"Force AB:"<<fad<<"lb (C)\n";
+fdb=(fad*cos(ang1))+(fcb*d);
+cout<<"Force DB:"<<fdb<<"lb (T)\n";
+lines();
+reset();
+}
+
+void mech::prob40(){
+lines();
+cout<<"Figure 2:\n";
+lines();
+cout<<"Input given lengths in terms of ft.\n";
+lines();
+cout<<"Input Force E:";
+cin>>fe;
+cout<<"Input lengths of the side of the similar triangle at E\n";
+cout<<"Hypotenuse:";
+cin>>hy;
+cout<<"Adjacent:";
+cin>>ad;
+cout<<"Opposite:";
+cin>>op;
+cout<<"Input length of AH:";
+cin>>ah;
+lines();
+cout<<"Input angle in terms of degrees.\n";
+cout<<"Input angle between AH and AB:";
+cin>>ang1;
+ang2=90-ang1;
+ang1=ang1*PI/180;
+ang2=ang2*PI/180;
+lines();
+ab=(cos(ang1))/ah;
+bh=ab*sin(ang1);
+ay=((fe*(ad/hy))*(ah*2))/(ah*2);
+ax=(fe*(op/hy));
+fab=ay/cos(ang2);
+cout<<"Force AB:"<<fab<<" lb (T)\n";
+fah=-ax-(fab*cos(ang1));
+fah=fah*-1;
+cout<<"Force AH:"<<fah<<" lb (C)\n";
+cout<<"Force HG:"<<fah<<" lb (C)\n";
+cout<<"Force BH:0\n";
+fbc=((ah*2)*(ay))/(4*cos(14.04));
+fbg=(((fab*cos(ang1)))-(fbc*cos(14.04)))/cos(ang1);
+fbc=fbc/10;
+fbg=fbg*-1;
+cout<<"Force BC:"<<fbc<<" lb (T)\n";
+cout<<"Force BG:"<<fbg<<" lb (C)\n";
+cout<<"Force ED:"<<fab<<" lb (T)\n";
+cout<<"Force EF:"<<fah<<" lb (C)\n";
+cout<<"Force CD:"<<fbc<<" lb (T)\n";
+cout<<"Force DF:0\n";
+cout<<"Force DG:"<<fbg<<" lb (C)\n";
+cout<<"Force FG:"<<fah<<" lb (C)\n";
+lines();
+
+}
+
+
+
+void mech::lines(){
+cout<<"-----------------------------------------------------------\n";
+}
+void mech::reset(){
+fbc=0;
+hy=0;
+ad=0;
+cd=0;
+op=0;
+ah=0;
+bh=0;
+fah=0;
+fe=0;
+fdb=0;
+fad=0;
+dk=0;
+ak=0;
+fac=0;
+bk=0;
+a=0;
+b=0;
+c=0;
+d=0;
+fi=0;
+fj=0;
+fk=0;
+fab=0;
+f=0;
+fcb=0;
+fbg=0;
+fcf=0;
+fag=0;
+fgf=0;
+fef=0;
+fed=0;
+fcd=0;
+ffd=0;
+fgc=0;
+ax=0;
+ay=0;
+ey=0;
+gy=0;
+fy=0;
+temp=0;
+ang1=0;
+ang2=0;
+bc=0;
+ab=0;
+ag=0;
+}

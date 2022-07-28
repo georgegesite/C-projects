@@ -1,0 +1,25 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+
+//create struct
+struct node
+{
+int info;
+struct node
+
+
+   
+
+int main (int argc, char * argv[])
+
+{
+
+ 
+
+
+return EXIT_SUCCESS;
+
+}

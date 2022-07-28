@@ -1,0 +1,44 @@
+#include<cstdlib>
+#include<iostream>
+
+using namespace std;
+
+int main (int argc, char * argv[])
+
+{
+  char str[100],str1[100],swap;
+int i,j,k,l,m,n,o,count,x;
+
+cout<<"Input words:\n";
+
+gets(str);
+x=strlen(str)-1;
+cout<<"string length:"<<x<<"\n";
+
+count=0;
+if((str[0]=='a')||(str[0]=='e')||(str[0]=='i')||(str[0]=='o')||(str[0]=='u')){
+count++;
+}
+
+if(count!=0){
+x=x+2;
+str[x]='y';
+str[x-1]='a';
+puts(str);
+}
+else{
+
+swap=str[0];
+for(i=1;i<=x;i++){
+str[i-1]=str[i];}
+str[x]=swap;
+x=x+2;
+str[x]='y';
+str[x-1]='a';
+puts(str);}
+
+
+system("PAUSE");
+return EXIT_SUCCESS;
+
+}

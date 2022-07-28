@@ -1,0 +1,36 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+
+typedef int * example;
+
+
+
+int main (int argc, char * argv[])
+
+{
+int size;
+
+example a;
+cout<<"input size of memory: ";
+cin>>size;
+a=new int[size];
+for(int i=0;i<size;i++){
+cout<<"input no.:  ";
+cin>>a[i];
+}
+cout<<endl;
+cout<<"output:"<<endl;
+for(int i=0;i<size;i++){
+cout<<a[i]<<endl;
+delete []a;
+}
+return 0;
+ 
+
+
+return EXIT_SUCCESS;
+
+}

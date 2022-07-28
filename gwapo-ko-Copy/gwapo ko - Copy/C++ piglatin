@@ -1,0 +1,124 @@
+//Samenodin Sarip
+#include<cstdlib>
+#include<iostream>
+
+using namespace std;
+class piglatin{
+public:
+   void input();
+   void Piglatin();
+   void output();
+   char wc[100][100],w[100],pl[100][100],swap;
+   int i,j,k,l,m,n,o,p,vow,con,wl,length,x,z,len;
+};
+
+   
+
+int main (int argc, char * argv[])
+
+{
+ //instance
+piglatin a;
+a.input();
+a.Piglatin();
+a.output();
+
+
+return EXIT_SUCCESS;
+
+}
+//definition
+void piglatin::input()
+{
+  cout<<"Input words:\n";
+gets(w);
+}
+void piglatin::Piglatin()
+{
+  wl=strlen(w);
+x=0;
+z=0;
+for(i=0;i<wl;i++)
+{
+  if(w[i]!=' '&&w[i]!='\0')
+{
+   wc[x][z]=w[i];
+    z++;
+}
+  if(w[i]==' '||w[i]=='\0')
+{
+  wc[x][z]='\0';
+  x++; z=0;
+}
+}
+k=0;
+l=0;
+for(i=0;i<=x;i++)
+{
+  vow=0;
+  con=0;
+  length=strlen(wc[i]);
+if((wc[i][0]=='a')||(wc[i][0]=='e')||(wc[i][0]=='i')||(wc[i][0]=='o')||(wc[i][0]=='u'))
+{
+  length=length+2;
+  wc[i][length-1]='y';
+  wc[i][length-2]='a';
+  
+  for(m=0;m<=length;m++)
+{
+if(wc[i][m]!=' '&&wc[i][m]!='\0')
+{
+ pl[k][l]=wc[i][m];
+ l++;
+}
+if(wc[i][m]==' '||wc[i][m]=='\0')
+{
+  pl[k][l]='\0';
+  k++;
+  l=0;
+}
+}
+}
+
+else
+{
+swap=wc[i][0];
+for(j=1;j<=length;j++){
+wc[i][j-1]=wc[i][j];
+}
+wc[i][length-1]=swap;
+
+length=length+2;
+wc[i][length-1]='y';
+wc[i][length-2]='a';
+for(n=0;n<=length;n++)
+{
+if(wc[i][n]!=' '&&wc[i][n]!='\0')
+{
+  pl[k][l]=wc[i][n];
+  l++;
+}
+if(wc[i][n]==' '||wc[i][n]=='\0')
+{
+  pl[k][l]='\0';
+  k++;
+  l=0;
+}
+}
+}
+}
+}
+
+void piglatin::output()
+{
+cout<<"\n";
+  for(p=0;p<k;p++)
+{
+  len=strlen(pl[p]);
+for(i=0;i<len;i++)
+{
+cout<<pl[p][i];
+}
+cout<<" ";
+}
+}

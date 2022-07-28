@@ -1,0 +1,345 @@
+/*  Samenodin Sarip       \
+     Digna Mae Bulayo.      \   BSCPE2A
+     Gladys Hurmachuelos/   
+*/
+#include <iostream>
+#include <cstdlib>
+#include <cstring>
+#define strlens 50
+
+using namespace std;
+
+struct node{
+	std::string data;
+	struct node *next;
+}
+
+ *start;
+
+class single_llist{
+		
+	public:
+std::string *str;
+		single_llist(){
+			str=new std::string[strlens];
+			start=NULL;
+		}
+		
+		node *create_node(std::string);
+		void insert_begin();
+		void insert_last();
+		void insert_pos();
+		void delete_pos();
+		void update();
+		void display_maxWord();
+		void display();
+        void lines();
+};
+
+int main(){
+	char choice;
+	single_llist a;
+	start=NULL;
+	while(1){
+		a.lines();
+		cout<<"[A]:Insert node at the beginning\n";
+		cout<<"[B]:Insert node at last\n";
+		cout<<"[C]:Insert at a given position\n";
+		cout<<"[D]:Update a node\n";
+		cout<<"[E]:Delete node\n";
+		cout<<"[F]:Exit\n";
+		a.lines();
+		cout<<"Enter choice: ";
+		cin>>choice;
+        a.lines();
+		
+		switch(choice){
+			case 'a':
+			case 'A':
+				a.insert_begin();
+				a.display();
+				a.display_maxWord();
+				break;
+				
+			case 'b':
+			case 'B':
+				a.insert_last();
+				a.display();
+				a.display_maxWord();
+				break;
+				
+			case 'c':
+			case 'C':
+				a.insert_pos();
+				a.display();
+				a.display_maxWord();
+				break;
+			
+			case 'd':
+			case 'D':
+				a.update();
+				a.display();
+				break;
+			
+			case 'e':
+			case 'E':
+				a.delete_pos();
+				a.display();
+				a.display_maxWord();
+				break;
+			
+			case 'f':
+			case 'F':
+				cout<<"\nsayonara";
+				exit(0);
+				break;
+				
+			default:
+				cout<<"Choice not valid"<<endl;
+				break;
+		}
+	}
+}
+
+
+node *single_llist::create_node(std::string sTr){
+	struct node *temp;
+	temp=new(struct node);
+	if(temp==NULL){
+		cout<<"\nMemory not allocated!";
+		return 0;
+	}
+	else{
+		temp->data=sTr;
+		temp->next=NULL;
+		return temp;
+	}
+}
+
+
+void single_llist::insert_begin(){
+	std::string sTr;
+	cout<<"Enter a word: ";
+	cin>>sTr;
+    lines();
+	struct node *temp,*p;
+	temp=create_node(sTr);
+	if(start==NULL){
+		start=temp;
+		start->next=NULL;
+	}
+	else{
+		p=start;
+		start=temp;
+		start->next=p;
+	}
+}
+
+
+void single_llist::insert_last(){
+	std::string value;
+	cout<<"Enter a word to be inserted: ";
+	cin>>value;
+    lines();
+
+	struct node *temp,*s;
+	temp=create_node(value);
+	s=start;
+	while(s->next!=NULL){
+		s=s->next;
+	}
+	temp->next=NULL;
+	s->next=temp;
+}
+
+
+void single_llist::insert_pos(){
+	std::string value;
+	int pos,c=0,i;
+	cout<<"Enter the word to be inserted: ";
+	cin>>value;
+    lines();
+	struct node *temp,*s,*ptr;
+	temp=create_node(value);
+	cout<<"Enter position: ";
+    
+	cin>>pos;
+lines();
+	
+	s=start;
+	while(s!=NULL){
+		s=s->next;
+		c++;
+	}
+	if(pos==1){
+		if(start==NULL){
+			start=temp;
+			start->next=NULL;
+		}
+		else{
+			ptr=start;
+			start=temp;
+			start->next=ptr;
+		}
+	}
+	else if(pos>1&&pos<=c){
+		s=start;
+		for(i=1;i<pos;i++){
+			ptr=s;
+			s=s->next;
+		}
+		ptr->next=temp;
+		temp->next=s;
+	}
+	else{
+		cout<<"Position out of range!!"<<endl;
+        lines();
+	}
+}
+
+void single_llist::display_maxWord(){
+	int max=0;
+	std::string s,s1;
+	struct node *temp;
+	int c=0;
+	temp=start;
+	while(temp!=NULL){
+		str[c]=temp->data;
+		c++;
+		temp=temp->next;
+	}
+	
+	for(int i=0;i<c;i++){
+		s=str[i];
+		int len=s.length();
+		int c2=0;
+		for(int a=0;a<len;a++){
+			if(isalpha (s[a])){
+				continue;
+			}
+			else{
+				c2++;
+			}
+		}
+		if(c2==0){
+			if(len>max){
+				max=len;
+			}
+		}
+	}
+
+	cout<<"Longest word/s: ";
+	for(int j=0;j<c;j++){
+		s1=str[j];
+		int len1=s1.length();
+		if(max==len1){
+			cout<<endl<<s1<<"--------"<<"Position: "<<j+1;
+			
+		}
+	}
+	cout<<"\n";
+}
+
+
+void single_llist::delete_pos(){
+	int pos,i,c=0,j=0;
+	if(start==NULL){
+		cout<<endl<<"List is empty!";
+        lines();
+		return;
+	}
+	cout<<"Enter the position of word to be deleted: ";
+	cin>>pos;
+lines();
+	struct node *s,*ptr;
+	s=start;
+	if(pos==1){
+		start=s->next;
+	}
+	else{
+		while(s!=NULL){
+			s=s->next;
+			c++;
+		}
+		if(pos>0&&pos<=c){
+			s=start;
+			for(i=1;i<pos;i++){
+				ptr=s;
+				s=s->next;
+			}
+			ptr->next=s->next;
+	
+		}
+		else{
+			cout<<"Position out of range!"<<endl;
+j=1;
+lines();
+		}
+		free(s);
+if(j==0){
+cout<<"Word deleted"<<endl;
+lines();
+}
+	}
+}
+
+
+void single_llist::display(){
+	struct node *temp;
+	if(start==NULL){
+		cout<<"List is empty!"<<endl;
+		return;
+lines();
+	}
+	temp=start;
+	cout<<"Element/s of the list is/are: \n";
+
+	while(temp!=NULL){
+		cout<<temp->data;
+		temp=temp->next;
+		if(temp!=NULL){
+			cout<<"->";
+		}
+	}
+   cout<<"->NULL";
+   cout<<endl;
+	lines();
+}
+
+
+void single_llist::update(){
+	int pos,i;
+	std::string value;
+	if(start==NULL){
+		cout<<"List is empty"<<endl;
+		return;
+lines();
+	}
+	cout<<"Enter the node position to be updated: ";
+	cin>>pos;
+lines();
+	cout<<"Enter the word to be inserted: ";
+	cin>>value;
+lines();
+	struct node *s,*ptr,*temp;
+	s=start;
+	if(pos==1){
+		start->data=value;
+	}
+	else{
+		for(i=0;i<pos;i++){
+			if(s==NULL){
+				cout<<"There are less than "<<pos<<" elements";
+				return;
+lines();
+			}
+			s=s->next;
+		}
+		s->data=value;
+	}
+	cout<<"Node updated"<<endl;
+}
+
+void single_llist::lines(){
+cout<<"------------------------------------------------------------"<<endl;
+}

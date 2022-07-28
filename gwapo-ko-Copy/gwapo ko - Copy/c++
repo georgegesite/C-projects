@@ -1,0 +1,100 @@
+//Samenodin A. Sarip
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+class exercise{
+public:
+    void input();
+    void process();
+    void output();
+char str[100],wc[100][100];
+int composite[100],prime[100],c,p,i,j,k,l,m,n,temp,x,z,num[100],count;
+};
+
+   
+
+int main (int argc, char * argv[])
+
+{
+ exercise a;
+ a.input();
+a.process();
+a.output();
+cout<<endl;
+
+system("PAUSE");
+return EXIT_SUCCESS;
+
+}
+void exercise::input()
+{
+  cout<<"input:\n";
+  gets(str);
+}
+void exercise::process()
+{
+  x=0;
+z=0;
+for(int i=0;i<strlen(str);i++){
+if(str[i]!=' '&&str[i]!='\0'&&str[i]!='.'){
+   if(str[i]=='1'||str[i]=='2'||str[i]=='3'||str[i]=='4'||str[i]=='5'||str[i]=='6'||str[i]=='7'||str[i]=='8'||str[i]=='9'||str[i]=='0'){
+wc[x][z]=str[i];
+z++;
+}
+}
+else{
+wc[x][z]='\0';
+x++;
+z=0;
+}
+}
+
+for(i=0;i<=x;i++){
+num[i]=atoi(wc[i]);
+}
+
+c=0;
+p=0;
+
+
+for(i=0;i<=x;i++){
+count=0;
+temp=num[i];
+for(j=2;j<temp;j++){
+if(num[i]%j==0){
+count++;}
+}
+if(count!=0){
+composite[c]=num[i];
+c++;}
+else if(count==0){
+prime[p]=num[i];
+p++;
+}
+}
+}
+
+void exercise::output()
+{
+if(c!=0){
+cout<<"Composite:\n";
+for(i=0;i<c;i++){
+cout<<composite[i];
+cout<<" ";
+}
+}
+if(c==0){
+cout<<" No composite";}
+if(p!=0){
+cout<<"\nPrime:\n";
+for(i=0;i<p;i++){
+cout<<prime[i];
+cout<<" ";
+}
+}
+if(p==0){
+cout<<" No prime";
+}
+}

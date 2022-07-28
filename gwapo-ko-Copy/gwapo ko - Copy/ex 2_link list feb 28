@@ -1,0 +1,627 @@
+#include<cstdlib>
+#include<iostream>
+#include<cstring>
+#include<math.h>
+using namespace std;
+
+
+struct node{
+int info;
+struct node *next;
+}
+*start;
+
+class single_llist{
+public:
+
+void overall();
+void menu();
+void input();
+void insert_begin();
+void insert_last();
+void positions();
+void specific();
+void all();
+void update();
+void delete_pos();
+void search();
+void display();
+void lines();
+void sort();
+void reset();
+node* create_node(int);
+single_llist(){
+start=NULL;
+}
+
+int e=0,past_pos[100],present_pos[100],list_before[100],list_after[100],past=0,present=0,past_n=0,present_n=0,l,m,n,o,p,num1[100],r,num2[100],b=0,bb=0;
+
+};
+
+
+int main (int argc, char * argv[])
+
+{
+single_llist a;
+a.overall();
+start=NULL;
+
+return EXIT_SUCCESS;
+
+}
+
+node *single_llist::create_node(int value){
+struct node *temp, *s;
+
+temp=new(struct node);
+if(temp==NULL){
+cout<<"memory not allocated"<<endl;
+return 0;
+}
+else{
+temp->info=value;
+temp->next=NULL;
+return temp;
+}
+}
+
+void single_llist::overall(){
+if(bb==0){
+input();
+display();
+bb++;
+}
+
+lines();
+int choice;
+while(1){
+menu();
+lines();
+cout<<"Enter choice: ";
+cin>>choice;
+lines();
+switch(choice){
+case 1:
+insert_begin();
+display();
+lines();
+break;
+case 2:
+insert_last();
+display();
+lines();
+break;
+case 3:
+update();
+display();
+lines();
+break;
+case 4:
+delete_pos();
+display();
+lines();
+break;
+case 5:
+search();
+lines();
+break;
+case 6:
+sort();
+display();
+lines();
+break;
+case 7:
+positions();
+lines();
+break;
+case 8:
+reset();
+break;
+case 9:
+display();
+lines();
+break;
+case 10:
+cout<<"sayonara";
+exit(1);
+break;
+}
+}
+}
+
+void single_llist::menu(){
+cout<<"[1]:Insert at beginning"<<endl;
+cout<<"[2]:Insert at last"<<endl;
+cout<<"[3]:Update node"<<endl;
+cout<<"[4]:Delete node"<<endl;
+cout<<"[5]:Search"<<endl;
+cout<<"[6]:Sort list"<<endl;
+cout<<"[7]:Display Position"<<endl;
+cout<<"[8]:Reset Program"<<endl;
+cout<<"[9]:Display List"<<endl;
+cout<<"[10]:Exit"<<endl;
+}
+
+void single_llist::input(){
+if(b==0){
+struct node*temp,*p;
+int num[100],i,j,x,z,count=0,b,value,vv=0,val[vv],c;
+char str[100],str1[100][100];
+cout<<"Input Numbers: ";
+gets(str);
+x=0;
+z=0;
+for(i=0;i<strlen(str);i++){
+if(str[i]!=' '&&str[i]!='\0'){
+str1[x][z]=str[i];
+z++;
+}
+else{
+str1[x][z]='\0';
+z=0;
+x++;
+}
+}
+z=0;
+for(i=0;i<=x;i++){
+count=0;
+for(j=0;j<strlen(str1[i]);j++){
+if(str1[i][j]=='1'||str1[i][j]=='2'||str1[i][j]=='3'||str1[i][j]=='4'||str1[i][j]=='5'||str1[i][j]=='6'||str1[i][j]=='7'||str1[i][j]=='8'||str1[i][j]=='9'||str1[i][j]=='0'){
+count++;
+}
+}
+if(count==strlen(str1[i])){
+val[vv]=atoi(str1[i]);
+value=(int)val[vv];
+c=val[vv]-value;
+if(c==0&&value!=0){
+vv++;
+c=0;b=0;
+temp=create_node(value);
+if(start=NULL){
+start=temp;
+start->next=NULL;
+}
+else{
+p=start;
+start=temp;
+start->next=p;
+}
+}
+}
+}
+}
+}
+
+void single_llist::insert_begin(){
+if(e==0){
+cout<<"Error\nProgram reset"<<endl;
+single_llist();
+}
+else{
+struct node*temp, *p;
+int value,f;
+float c;
+cout<<"Input number: ";
+cin>>c;
+f=(int)c;
+c=c-f;
+if(c==0&&f>0){
+value=f;
+temp=create_node(value);
+if(start=NULL){
+start=temp;
+start->next=NULL;
+}
+else{
+p=start;
+start=temp;
+start->next=p;
+}
+cout<<"Successfully inserted"<<endl;
+}
+else{
+cout<<"Number is not valid"<<endl;
+}
+lines();
+}
+}
+void single_llist::insert_last(){
+if(e==0){
+cout<<"Error\nProgram reset"<<endl;
+reset();
+}
+else{
+struct node*temp,*p,*s;
+int value,f;
+float c;
+cout<<"Input number: ";
+cin>>c;
+f=(int)c;
+c=c-f;
+if(c==0&&f>0){
+value=f;
+temp=create_node(value);
+     s=start;
+     while(s->next !=NULL){
+        s= s->next;
+     }
+     temp->next=NULL;
+     s->next=temp;
+     cout<<"Successfully inserted"<<endl;
+}
+else{
+cout<<"Number is not valid"<<endl;
+}
+lines();
+}
+}
+void single_llist::update(){
+if(e==0){
+cout<<"Error\nProgram reset";
+reset();
+}
+else{
+int value,pos,counter =0;
+struct node *temp, *s, *ptr;
+int f,i;
+float c;
+cout<<"Input number: ";
+cin>>c;
+f=(int)c;
+c=c-f;
+if(c==0&&f>0){
+value=f;
+     temp=create_node(value);
+     cout<<"Enter position at which node to be inserted: ";
+     cin>>pos;
+cout<<endl;
+lines();
+     s=start;
+     while(s!=NULL){
+        s=s->next;
+        counter++;
+     }
+     if(pos==1){
+        if(start==NULL){
+           start=temp;
+           start->next=NULL;
+        }
+        else{
+           ptr=start;
+           start=temp;
+           start->next=ptr;
+           }
+        }
+        else if(pos>1 && pos <=counter){
+            s=start;
+            for(i=1;i<pos;i++){
+               ptr=s;
+               s=s->next;
+            }
+            ptr->next=temp;
+            temp->next=s;
+        }
+        else{
+           cout<<"Position out of range"<<endl;
+lines();
+           }
+}
+else{
+cout<<"Number is not valid"<<endl;
+lines();
+}
+}
+}
+void single_llist::delete_pos(){
+if(e==0){
+cout<<"Error\nProgram reset";
+reset();
+}
+else{
+ int pos, i, counter =0;
+     if(start==NULL){
+         cout<<"List is empty"<<endl;
+         return ;
+     }
+ cout<<"Enter the position of value to be deleted: ";
+ cin>>pos;
+ struct node *s, *ptr;
+ s=start;
+ if(pos==1){
+     start= s->next;
+ }
+ else{
+    while(s!=NULL){
+        s=s->next;
+        counter++;
+    }
+    if(pos>0 && pos<=counter){
+           s=start;
+           for(i=1;i<pos;i++){
+               ptr=s;
+               s=s->next;
+           }
+           ptr->next=s->next;
+           }
+           else{
+               cout<<"Position out of range"<<endl;
+lines();
+           }
+           free(s);
+           cout<<"Element Deleted"<<endl;
+lines();
+    }
+}
+}
+void single_llist::search(){
+ int value,pos=0,f;
+float c;
+     bool flag=false;
+     if(start==NULL){
+         cout<<"List is empty"<<endl;
+         return;
+     }
+     cout<<"Enter the value to be searched: ";
+cin>>c;
+f=(int)c;
+c=c-f;
+if(c==0&&f>0){
+value=f;
+     struct node *s;
+     s=start;
+     while(s!=NULL){
+         pos++;
+         if(s->info==value){
+              flag=true;
+              cout<<"Element "<<value<<" is found at position"<<pos<<endl;
+lines();
+         }
+         s=s->next;
+     }
+     if(!flag){
+               cout<<"Element "<<value<<" not found in the list"<<endl;
+lines();
+     }
+}
+else{
+cout<<"Number is not valid"<<endl;
+lines();
+}
+}
+
+void single_llist::display(){
+struct node *temp;
+if(start==NULL){
+cout<<"List is empty"<<endl;
+return;
+}
+else{
+temp=start;
+cout<<"Elements of the list: "<<endl;
+     while(temp!=NULL){
+         cout<<temp->info<<"->";
+         temp=temp->next;
+     }
+     cout<<"NULL"<<endl;
+}
+}
+
+void single_llist::sort(){
+e=1;
+struct node *temp, *p, *s;
+int pos=0,q=0,t=0,prime[100],composite[100],i,j,value,count,g,h,position,k;
+m=0;
+s=start;
+p=start;
+     while(s!=NULL){
+         pos++;
+past_pos[m]=pos;
+list_before[m]=s->info;
+num1[q]=s->info;
+free(p);
+s=s->next;
+p=s;
+
+q++;
+m++;
+     }
+g=0;
+h=0;
+for(i=0;i<q;i++){
+count=0;
+value=num1[i];
+for(j=2;j<value;j++){
+if(value%j!=0){
+count++;
+}
+}
+if(count==0){
+composite[g]=value;
+g++;
+}
+else{
+prime[h]=value;
+h++;
+}
+}
+for(i=0;i<h;i++){
+position=i;
+for(j=i+1;j<h;j++){
+if(prime[i]>prime[j]){
+position=j;
+}
+if(position!=i){
+r=prime[i];
+prime[i]=prime[j];
+prime[j]=r;
+}
+}
+}
+for(i=0;i<g;i++){
+position=i;
+for(j=i+1;j<g;j++){
+if(composite[i]<composite[j]){
+position=j;
+}
+if(position!=i){
+r=composite[i];
+composite[i]=composite[j];
+composite[j]=r;
+}
+}
+}
+r=0;
+for(i=0;i<h;i++){
+num2[r]=prime[i];
+r++;
+}
+for(i=0;i<g;i++){
+num2[r]=composite[i];
+r++;
+}
+start=NULL;
+for(i=0;i<r;i++){
+temp=create_node(num1[i]);
+
+if(start=NULL){
+start=temp;
+start->next=NULL;
+}
+else{
+p=start;
+start=temp;
+start->next=p;
+}
+}
+n=0;
+for(i=0;i<r;i++){
+present_pos[n]=i+1;
+list_after[n]=num2[i];
+n++;
+}
+}
+
+void single_llist::positions(){
+int choice;
+cout<<"[1]:Specific element\n";
+cout<<"[2]:All elements\n";
+lines();
+cout<<"Input choice: ";
+cin>>choice;
+lines();
+switch(choice){
+case 1:
+specific();
+break;
+case 2:
+all();
+break;
+}
+}
+
+void single_llist::specific(){
+struct node *temp, *p, *s;
+bool flag=false;
+float c;
+int value,pos=0,i,f;
+cout<<"Input number: ";
+cin>>c;
+f=(int)c;
+c=c-f;
+if(c==0&&f>0){
+value=f;
+if(e==1){
+cout<<"Bofore:"<<endl;
+}
+for(i=0;i<r;i++){
+if(num1[i]==value){
+cout<<"Number: "<<value<<" is at position "<<past_pos[i]<<endl;
+}
+else{
+cout<<"Element "<<value<<" does not exist"<<endl;
+}
+}
+s=start;
+if(e==1){
+cout<<"After:"<<endl;
+while(s!=NULL){
+         pos++;
+         if(s->info==value){
+              flag=true;
+              cout<<"Element "<<value<<" is at position"<<pos<<endl;
+lines();
+         }
+         s=s->next;
+     }
+     if(!flag){
+               cout<<"Element "<<value<<" does not exist"<<endl;
+lines();
+     }
+}
+}
+else{
+cout<<"Number is not valid"<<endl;
+}
+}
+
+void single_llist::all(){
+if(e==0){
+int i,pos=0;
+struct node*temp,*p;
+p=start;
+cout<<"Elements"<<"\t Position"<<endl;
+while(p!=NULL){
+pos++;
+cout<<"    "<<p->info<<"\t\t     "<<pos<<endl;
+p=p->next;
+}
+}
+else{
+int i,pos=0;
+cout<<"Before:\n";
+cout<<"Elements\t Position"<<endl;
+for(i=0;i<m;i++){
+cout<<num1[i]<<"\t"<<past_pos[i]<<endl;
+}
+
+cout<<"After:\n";
+cout<<"Elements\t Position"<<endl;
+for(i=0;i<n;i++){
+cout<<num2[i]<<"\t"<<present_pos[i]<<endl;
+}
+}
+}
+
+
+void single_llist::lines(){
+cout<<"----------------------------------------------------------"<<endl;
+}
+
+void single_llist::reset(){
+b=0;
+bb=0;
+overall();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
