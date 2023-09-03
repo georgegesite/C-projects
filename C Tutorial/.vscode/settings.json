@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "DataTypes.C": "cpp",
+        "DataTypesSizes.C": "cpp",
+        "DataTypeIntergers.C": "cpp"
+    }
+}
